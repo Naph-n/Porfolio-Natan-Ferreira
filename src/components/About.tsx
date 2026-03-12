@@ -30,12 +30,16 @@ export function About() {
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1542744094-24638ea0b3b5?q=80&w=800&auto=format&fit=crop",
   ];
 
   return (
-    <section id="about" className="bg-white py-24 px-6 text-black">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24 mb-24">
+    <section id="about" className="bg-white py-24 text-black overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -64,23 +68,33 @@ export function About() {
             </p>
           </motion.div>
         </div>
+      </div>
 
-        {/* Gallery */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
+      {/* Gallery Carousel - Full Bleed */}
+      <div className="relative w-full overflow-hidden my-32 lg:my-40 flex gap-4">
+        <div className="flex shrink-0 animate-marquee gap-4">
           {galleryImages.map((src, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="aspect-square overflow-hidden rounded-2xl bg-gray-100"
+            <div
+              key={`a-${idx}`}
+              className="h-80 md:h-[28rem] lg:h-[36rem] aspect-[4/5] shrink-0 overflow-hidden bg-gray-100"
             >
               <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
+            </div>
           ))}
         </div>
+        <div className="flex shrink-0 animate-marquee gap-4" aria-hidden="true">
+          {galleryImages.map((src, idx) => (
+            <div
+              key={`b-${idx}`}
+              className="h-80 md:h-[28rem] lg:h-[36rem] aspect-[4/5] shrink-0 overflow-hidden bg-gray-100"
+            >
+              <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+            </div>
+          ))}
+        </div>
+      </div>
 
+      <div className="mx-auto max-w-7xl px-6">
         {/* Stats */}
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (

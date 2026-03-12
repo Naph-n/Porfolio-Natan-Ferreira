@@ -49,7 +49,7 @@ export function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative grid gap-8 overflow-hidden rounded-[2rem] border border-white/10 bg-[#1a1a1a] p-8 transition-colors hover:bg-[#222] md:grid-cols-2 md:p-12"
+              className="group/card relative grid gap-8 overflow-hidden rounded-[2rem] border border-white/10 bg-[#1a1a1a] p-8 transition-colors hover:bg-[#222] md:grid-cols-2 md:p-12"
             >
               <div className="flex flex-col justify-center">
                 <h4 className="mb-4 font-display text-3xl font-normal text-white">{link.title}</h4>
@@ -65,10 +65,10 @@ export function Portfolio() {
                 <img
                   src={link.image}
                   alt={link.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/80 to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" />
               </div>
             </motion.a>
           ))}
