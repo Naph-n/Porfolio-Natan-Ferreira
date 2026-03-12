@@ -154,7 +154,7 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="font-display text-7xl font-light text-black mb-4">
+              <div className="font-display text-5xl font-light tracking-tighter text-black mb-4">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>
