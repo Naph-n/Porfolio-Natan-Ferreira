@@ -5,9 +5,10 @@ interface AnimatedTextProps {
   text: string;
   className?: string;
   delay?: number;
+  trigger?: boolean;
 }
 
-export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextProps) {
+export function AnimatedText({ text, className = '', delay = 0, trigger = true }: AnimatedTextProps) {
   // Split text into words to handle wrapping properly
   const words = text.split(' ');
 
@@ -41,7 +42,8 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
       className={`${className}`}
       variants={container}
       initial="hidden"
-      whileInView="visible"
+      animate={trigger ? "visible" : "hidden"}
+      whileInView={trigger ? "visible" : "hidden"}
       viewport={{ once: true, margin: "-10%" }}
     >
       {words.map((word, wordIndex) => (

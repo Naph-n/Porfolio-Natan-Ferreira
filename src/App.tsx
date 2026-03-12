@@ -17,8 +17,10 @@ import { CustomScrollbar } from "./components/CustomScrollbar";
 import { LanguageToggle } from "./components/LanguageToggle";
 import { Preloader } from "./components/Preloader";
 
+import { useLoading } from "./contexts/LoadingContext";
+
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     if (isLoading) return;

@@ -2,10 +2,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { AnimatedCounter } from "./ui/AnimatedCounter";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useLoading } from "../contexts/LoadingContext";
 import { useState, useEffect } from "react";
 
 export function About() {
   const { t } = useLanguage();
+  const { isLoading } = useLoading();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const stats = [
@@ -66,9 +68,9 @@ export function About() {
               {t('about.badge')}
             </span>
             <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl leading-tight">
-              <AnimatedText text={t('about.title1')} delay={0.1} /><br />
-              <AnimatedText text={t('about.title2')} delay={0.3} /><br />
-              <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} /></span>
+              <AnimatedText text={t('about.title1')} delay={0.1} trigger={!isLoading} /><br />
+              <AnimatedText text={t('about.title2')} delay={0.3} trigger={!isLoading} /><br />
+              <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} trigger={!isLoading} /></span>
             </h3>
           </motion.div>
           

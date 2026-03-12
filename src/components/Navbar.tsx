@@ -2,11 +2,13 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useLoading } from "../contexts/LoadingContext";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { isLoading } = useLoading();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +34,7 @@ export function Navbar() {
           <motion.a 
             href="#" 
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex items-center"
           >
@@ -52,7 +54,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   className="text-sm font-medium text-white/80 transition-colors hover:text-white"
                 >
@@ -65,7 +67,7 @@ export function Navbar() {
             <motion.a
               href="#"
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black lg:px-5 lg:py-2"
             >
