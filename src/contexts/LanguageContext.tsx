@@ -17,7 +17,7 @@ const translations: Translations = {
   'nav.testimonials': { pt: 'Depoimentos', en: 'Testimonials' },
   'nav.faqs': { pt: 'FAQs', en: 'FAQs' },
   'nav.contact': { pt: 'Contato', en: 'Contact' },
-  'nav.resume': { pt: 'Currículo', en: 'Resume' },
+  'nav.resume': { pt: 'CV', en: 'CV' },
 
   // Hero
   'hero.badge': { pt: 'Disponível', en: 'Available' },
