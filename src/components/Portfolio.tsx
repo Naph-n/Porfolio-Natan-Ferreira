@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
+import { InteractiveButton } from "./ui/InteractiveButton";
 
 export function Portfolio() {
   const links = [
@@ -51,15 +52,14 @@ export function Portfolio() {
               className="group relative grid gap-8 overflow-hidden rounded-[2rem] border border-white/10 bg-[#1a1a1a] p-8 transition-colors hover:bg-[#222] md:grid-cols-2 md:p-12"
             >
               <div className="flex flex-col justify-center">
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10 text-blue-500 transition-transform group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white">
-                  <ArrowUpRight className="h-6 w-6" />
-                </div>
                 <h4 className="mb-4 font-display text-3xl font-normal text-white">{link.title}</h4>
                 <p className="mb-8 text-base text-white/60">{link.description}</p>
-                <div className="inline-flex items-center gap-2 text-sm font-semibold text-blue-500">
+                <InteractiveButton
+                  as="div"
+                  className="w-fit rounded-full border border-white/10 bg-white/5 pl-6 pr-2 py-2 text-sm font-medium"
+                >
                   Acessar
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </div>
+                </InteractiveButton>
               </div>
               <div className="relative aspect-square overflow-hidden rounded-2xl md:aspect-auto">
                 <img

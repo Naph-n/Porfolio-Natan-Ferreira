@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  as?: 'button' | 'a';
+  as?: 'button' | 'a' | 'div';
   href?: string;
   className?: string;
   circleClassName?: string;
