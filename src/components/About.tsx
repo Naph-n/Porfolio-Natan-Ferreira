@@ -1,25 +1,30 @@
 import { motion } from "motion/react";
 import { AnimatedText } from "./ui/AnimatedText";
+import { AnimatedCounter } from "./ui/AnimatedCounter";
 
 export function About() {
   const stats = [
     {
-      value: "7",
+      value: 7,
+      suffix: "",
       label: "Anos de experiência",
       description: "Com uma trajetória sólida unindo audiovisual, design e UX",
     },
     {
-      value: "50",
+      value: 50,
+      suffix: "+",
       label: "Projetos concluídos",
       description: "Mais de cinquenta projetos entregues com qualidade, consistência e visão criativa.",
     },
     {
-      value: "20",
+      value: 20,
+      suffix: "+",
       label: "Clientes atendidos",
       description: "Profissionais, empresas e marcas que confiaram na minha entrega e no meu processo.",
     },
     {
-      value: "100%",
+      value: 100,
+      suffix: "%",
       label: "Satisfação",
       description: "Todos os clientes satisfeitos com o cuidado, a precisão e a experiência do trabalho.",
     },
@@ -106,7 +111,7 @@ export function About() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="font-display text-7xl font-light text-black mb-4">
-                {stat.value}
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>
               <p className="text-sm text-gray-500">{stat.description}</p>

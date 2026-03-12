@@ -22,5 +22,12 @@
 @layer base {
   body {
     @apply bg-background text-foreground font-sans antialiased selection:bg-white/20 tracking-[-0.015em] leading-[1.55];
+    /* Hide native scrollbar for all browsers */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 }

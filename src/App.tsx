@@ -13,7 +13,7 @@ import { Portfolio } from "./components/Portfolio";
 import { Testimonials } from "./components/Testimonials";
 import { FAQ } from "./components/FAQ";
 import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
+import { CustomScrollbar } from "./components/CustomScrollbar";
 
 export default function App() {
   useEffect(() => {
@@ -41,6 +41,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen selection:bg-blue-500/30">
+      <CustomScrollbar />
       <Navbar />
       <main>
         <Hero />
@@ -51,7 +52,6 @@ export default function App() {
         <FAQ />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/80"
           >
             <span className="relative flex h-2 w-2">
@@ -22,13 +22,13 @@ export function Hero() {
           </motion.div>
 
           <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl">
-            <AnimatedText text="Ajudando marcas a se moverem!" delay={0.1} />
+            <AnimatedText text="Ajudando marcas a se moverem!" delay={1.0} />
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
             className="mt-6 max-w-lg text-lg text-white/70"
           >
             Transformo conceitos em experiências visuais que unem produto, marca e público!
@@ -37,13 +37,14 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 1.4 }}
             className="mt-10"
           >
             <InteractiveButton
               as="a"
               href="#contact"
-              className="rounded-full bg-blue-600 pl-6 pr-2 py-2 text-sm font-medium"
+              className="rounded-full bg-blue-600 pl-8 pr-3 py-3 text-base font-medium"
+              circleClassName="right-3 h-10 w-10 bg-white"
             >
               Vamos conversar
             </InteractiveButton>
@@ -53,7 +54,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 1.0 }}
           className="relative mx-auto w-full max-w-md lg:max-w-[420px]"
         >
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">

@@ -39,7 +39,8 @@ export function FAQ() {
             FAQs
           </span>
           <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
-            <AnimatedText text="Respondendo às suas perguntas" />
+            <AnimatedText text="Respondendo às" /><br />
+            <AnimatedText text="suas perguntas" />
           </h3>
           <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600">
             Tem mais perguntas? Envie-nos sua dúvida abaixo.

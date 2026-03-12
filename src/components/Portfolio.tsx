@@ -49,14 +49,17 @@ export function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group/card relative grid gap-8 overflow-hidden rounded-[2rem] border border-white/10 bg-[#1a1a1a] p-8 transition-colors hover:bg-[#222] md:grid-cols-2 md:p-12"
+              className="group/card relative grid gap-8 overflow-hidden rounded-[2rem] bg-[#1a1a1a] p-8 transition-colors hover:bg-[#222] md:min-h-[500px] lg:min-h-[600px] md:grid-cols-2 md:p-12"
             >
-              <div className="flex flex-col justify-center">
-                <h4 className="mb-4 font-display text-3xl font-normal text-white">{link.title}</h4>
-                <p className="mb-8 text-base text-white/60">{link.description}</p>
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h4 className="mb-4 font-display text-3xl font-normal text-white">{link.title}</h4>
+                  <p className="text-base text-white/60">{link.description}</p>
+                </div>
                 <InteractiveButton
                   as="div"
-                  className="w-fit rounded-full border border-white/10 bg-white/5 pl-6 pr-2 py-2 text-sm font-medium"
+                  className="mt-8 w-fit rounded-full bg-blue-600 pl-8 pr-3 py-3 text-base font-medium"
+                  circleClassName="right-3 h-10 w-10 bg-white"
                 >
                   Acessar
                 </InteractiveButton>
