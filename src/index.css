@@ -12,6 +12,7 @@
   --color-card: #171717;
 
   --animate-marquee: marquee 60s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 60s linear infinite;
 }
 
 @keyframes marquee {
@@ -19,15 +20,21 @@
   100% { transform: translateX(calc(-100% - 1rem)); }
 }
 
+@keyframes marquee-reverse {
+  0% { transform: translateX(calc(-100% - 1rem)); }
+  100% { transform: translateX(0%); }
+}
+
 @layer base {
-  body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-white/20 tracking-[-0.015em] leading-[1.55];
-    /* Hide native scrollbar for all browsers */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  /* Hide default scrollbar since we have a custom one */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  html {
+    scrollbar-width: none;
   }
 
-  body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-white/20 tracking-[-0.015em] leading-[1.55];
   }
 }

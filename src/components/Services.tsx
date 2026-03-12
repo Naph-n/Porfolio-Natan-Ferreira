@@ -2,40 +2,42 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { Plus, Minus, MonitorPlay, Camera, PenTool, Layout, Layers, Video } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function Services() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useLanguage();
 
   const services = [
     {
       icon: <Video className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
-      title: "Brand Films",
-      description: "Criação de filmes institucionais e comerciais que traduzem a essência de marcas e pessoas, unindo narrativa, estética e propósito.",
+      title: t('services.s1.title'),
+      description: t('services.s1.desc'),
     },
     {
       icon: <Camera className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
-      title: "Audiovisual",
-      description: "Produção de vídeos para campanhas, redes sociais e produtos, com cuidado técnico, luz precisa e storytelling alinhado à estratégia.",
+      title: t('services.s2.title'),
+      description: t('services.s2.desc'),
     },
     {
       icon: <PenTool className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
-      title: "Design Gráfico",
-      description: "Construção de identidades visuais, peças digitais e materiais gráficos.",
+      title: t('services.s3.title'),
+      description: t('services.s3.desc'),
     },
     {
       icon: <Layers className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
-      title: "Direção Criativa & Fotografia",
-      description: "Concepção visual completa para projetos que precisam de identidade forte e narrativa.",
+      title: t('services.s4.title'),
+      description: t('services.s4.desc'),
     },
     {
       icon: <Layout className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
-      title: "UX Design",
-      description: "Pesquisa, estruturação e prototipação de experiências digitais focadas em clareza, fluxo eficiente e usabilidade.",
+      title: t('services.s5.title'),
+      description: t('services.s5.desc'),
     },
     {
       icon: <MonitorPlay className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
-      title: "Motion Design",
-      description: "Animações que comunicam com ritmo e intenção. Criação de movimentos, transições e composições visuais.",
+      title: t('services.s6.title'),
+      description: t('services.s6.desc'),
     },
   ];
 
@@ -50,13 +52,13 @@ export function Services() {
           className="mb-16 text-center flex flex-col items-center"
         >
           <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
-            Serviços
+            {t('services.badge')}
           </span>
           <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl">
-            <AnimatedText text="O que fazemos?" />
+            <AnimatedText text={t('services.title')} />
           </h3>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">
-            Descubra qual dos meus serviços melhor atende às necessidades do seu projeto.
+            {t('services.subtitle')}
           </p>
         </motion.div>
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'motion/react';
 
 interface AnimatedTextProps {
@@ -7,8 +8,8 @@ interface AnimatedTextProps {
 }
 
 export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextProps) {
-  // Split text into characters, keeping spaces
-  const letters = Array.from(text);
+  // Split text into words to handle wrapping properly
+  const words = text.split(' ');
 
   const container = {
     hidden: { opacity: 0 },
@@ -23,8 +24,8 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
       opacity: 1,
       x: 0,
       transition: {
-        type: 'tween',
-        ease: [0.19, 1.0, 0.22, 1.0], // easeOutExpo approximation
+        type: 'tween' as const,
+        ease: [0.19, 1.0, 0.22, 1.0] as [number, number, number, number], // easeOutExpo approximation
         duration: 1.2,
       },
     },
@@ -36,21 +37,27 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
 
   return (
     <motion.span
-      className={`inline-block ${className}`}
+      className={`${className}`}
       variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-10%" }}
     >
-      {letters.map((letter, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          className="inline-block"
-          style={{ whiteSpace: letter === ' ' ? 'pre' : 'normal' }}
-        >
-          {letter}
-        </motion.span>
+      {words.map((word, wordIndex) => (
+        <React.Fragment key={wordIndex}>
+          <span className="inline-block whitespace-nowrap">
+            {Array.from(word).map((letter, letterIndex) => (
+              <motion.span
+                key={letterIndex}
+                variants={child}
+                className="inline-block"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </span>
+          {wordIndex !== words.length - 1 && " "}
+        </React.Fragment>
       ))}
     </motion.span>
   );

@@ -1,14 +1,17 @@
 import { motion } from "motion/react";
 import { Instagram, Linkedin, Dribbble } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function Footer() {
+  const { t } = useLanguage();
+
   const links = [
-    { name: "Sobre", href: "#about" },
-    { name: "Meu trabalho", href: "#our-work" },
-    { name: "Serviços", href: "#services" },
-    { name: "Depoimentos", href: "#testimonials" },
-    { name: "FAQs", href: "#faqs" },
-    { name: "Contato", href: "#contact" },
+    { name: t('nav.about'), href: "#about" },
+    { name: t('nav.work'), href: "#our-work" },
+    { name: t('nav.services'), href: "#services" },
+    { name: t('nav.testimonials'), href: "#testimonials" },
+    { name: t('nav.faqs'), href: "#faqs" },
+    { name: t('nav.contact'), href: "#contact" },
   ];
 
   return (
@@ -19,7 +22,7 @@ export function Footer() {
             nr
           </a>
           <p className="text-sm text-white/50">
-            © 2025 Natan Ferreira. Todos os direitos reservados.
+            {t('footer.rights')}
           </p>
         </div>
 

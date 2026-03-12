@@ -14,6 +14,7 @@ import { Testimonials } from "./components/Testimonials";
 import { FAQ } from "./components/FAQ";
 import { Contact } from "./components/Contact";
 import { CustomScrollbar } from "./components/CustomScrollbar";
+import { LanguageToggle } from "./components/LanguageToggle";
 
 export default function App() {
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen selection:bg-blue-500/30">
       <CustomScrollbar />
+      <LanguageToggle />
       <Navbar />
       <main>
         <Hero />

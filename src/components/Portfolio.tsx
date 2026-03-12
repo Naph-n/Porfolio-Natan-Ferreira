@@ -2,18 +2,21 @@ import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { InteractiveButton } from "./ui/InteractiveButton";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function Portfolio() {
+  const { t } = useLanguage();
+
   const links = [
     {
-      title: "Behance",
-      description: "No meu Behance você encontra a versão completa do meu trabalho: estudos, processos, bastidores e cada decisão criativa que constrói as narrativas visuais que desenvolvo. É onde apresento meus projetos com mais detalhe, da concepção ao resultado final mostrando como transformo ideias em experiências que conectam. Se você curte ver o processo por trás das ideias e entender como cada prejeto se constrói, é só acessar e conferir.",
+      title: t('portfolio.p1.title'),
+      description: t('portfolio.p1.desc'),
       href: "https://www.behance.net/natanaeferreir7",
       image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop",
     },
     {
-      title: "Instagram - @naph.n",
-      description: "No Instagram você acompanha um lado mais vivo e espontâneo do meu trabalho: bastidores, experimentos visuais, reflexões e um pouco do que inspira minha jornada como profissional criativo. É onde compartilho processos, pequenas histórias e a estética que guia tudo o que faço. Siga para conhecer mais sobre mim e sobre o meu universo criativo. Se quiser me acompanhar de um jeito mais real e direto, o Instagram é onde tudo aparece primeiro. Sem filtro, do jeito que acontece.",
+      title: t('portfolio.p2.title'),
+      description: t('portfolio.p2.desc'),
       href: "https://www.instagram.com/naph.n/",
       image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=2000&auto=format&fit=crop",
     },
@@ -30,11 +33,11 @@ export function Portfolio() {
           className="mb-16"
         >
           <span className="inline-block rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white mb-6">
-            Portfólio
+            {t('portfolio.badge')}
           </span>
           <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
-            <AnimatedText text="Como transformo criatividade" delay={0.1} /><br />
-            <AnimatedText text="em " delay={0.3} /><span className="text-blue-500"><AnimatedText text="estratégia visual" delay={0.4} /></span>
+            <AnimatedText text={t('portfolio.title1')} delay={0.1} /><br />
+            <AnimatedText text={t('portfolio.title2')} delay={0.3} /><span className="text-blue-500"><AnimatedText text={t('portfolio.title3')} delay={0.4} /></span>
           </h3>
         </motion.div>
 
@@ -61,7 +64,7 @@ export function Portfolio() {
                   className="mt-8 w-fit rounded-full bg-blue-600 pl-8 pr-3 py-3 text-base font-medium"
                   circleClassName="right-3 h-10 w-10 bg-white"
                 >
-                  Acessar
+                  {t('portfolio.cta')}
                 </InteractiveButton>
               </div>
               <div className="relative aspect-square overflow-hidden rounded-2xl md:aspect-auto">

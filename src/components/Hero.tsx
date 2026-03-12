@@ -2,8 +2,11 @@ import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { InteractiveButton } from "./ui/InteractiveButton";
 import { AnimatedText } from "./ui/AnimatedText";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-20 text-white">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16 items-center">
@@ -18,11 +21,11 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
             </span>
-            Available for work
+            {t('hero.badge')}
           </motion.div>
 
           <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl">
-            <AnimatedText text="Ajudando marcas a se moverem!" delay={1.0} />
+            <AnimatedText text={t('hero.title')} delay={1.0} />
           </h1>
 
           <motion.p
@@ -31,7 +34,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 1.2 }}
             className="mt-6 max-w-lg text-lg text-white/70"
           >
-            Transformo conceitos em experiências visuais que unem produto, marca e público!
+            {t('hero.subtitle')}
           </motion.p>
 
           <motion.div
@@ -46,7 +49,7 @@ export function Hero() {
               className="rounded-full bg-blue-600 pl-8 pr-3 py-3 text-base font-medium"
               circleClassName="right-3 h-10 w-10 bg-white"
             >
-              Vamos conversar
+              {t('hero.cta')}
             </InteractiveButton>
           </motion.div>
         </div>

@@ -8,7 +8,7 @@ export function CustomScrollbar() {
   const top = useTransform(scrollYProgress, [0, 1], ["0%", "85%"]);
 
   return (
-    <div className="fixed right-1.5 top-2 bottom-2 w-1.5 z-[100] pointer-events-none mix-blend-difference">
+    <div className="fixed right-1 md:right-2 top-2 bottom-2 w-2 z-[100] pointer-events-none mix-blend-difference">
       <motion.div
         className="absolute w-full bg-white rounded-full"
         style={{

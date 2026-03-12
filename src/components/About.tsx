@@ -1,32 +1,35 @@
 import { motion } from "motion/react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { AnimatedCounter } from "./ui/AnimatedCounter";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function About() {
+  const { t } = useLanguage();
+
   const stats = [
     {
       value: 7,
       suffix: "",
-      label: "Anos de experiência",
-      description: "Com uma trajetória sólida unindo audiovisual, design e UX",
+      label: t('about.stat1.label'),
+      description: t('about.stat1.desc'),
     },
     {
       value: 50,
       suffix: "+",
-      label: "Projetos concluídos",
-      description: "Mais de cinquenta projetos entregues com qualidade, consistência e visão criativa.",
+      label: t('about.stat2.label'),
+      description: t('about.stat2.desc'),
     },
     {
       value: 20,
       suffix: "+",
-      label: "Clientes atendidos",
-      description: "Profissionais, empresas e marcas que confiaram na minha entrega e no meu processo.",
+      label: t('about.stat3.label'),
+      description: t('about.stat3.desc'),
     },
     {
       value: 100,
       suffix: "%",
-      label: "Satisfação",
-      description: "Todos os clientes satisfeitos com o cuidado, a precisão e a experiência do trabalho.",
+      label: t('about.stat4.label'),
+      description: t('about.stat4.desc'),
     },
   ];
 
@@ -52,12 +55,12 @@ export function About() {
             transition={{ duration: 0.5 }}
           >
             <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
-              Sobre mim
+              {t('about.badge')}
             </span>
             <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl leading-tight">
-              <AnimatedText text="criatividade" delay={0.1} /><br />
-              <AnimatedText text="clareza" delay={0.3} /><br />
-              <span className="text-blue-600"><AnimatedText text="propósito" delay={0.5} /></span>
+              <AnimatedText text={t('about.title1')} delay={0.1} /><br />
+              <AnimatedText text={t('about.title2')} delay={0.3} /><br />
+              <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} /></span>
             </h3>
           </motion.div>
           
@@ -69,7 +72,7 @@ export function About() {
             className="flex items-center"
           >
             <p className="text-xl font-light text-gray-600">
-              Bem-vindo ao meu portfólio. Sou o Natan, profissional de comunicação, designer e criador visual com mais de 7 anos de experiência, dedicado a transformar ideias em soluções claras, funcionais e memoráveis. Trabalho com design gráfico, UX/UI, vídeo, captação, motion, áudio, manipulação de imagem, gestão de projetos e eventos, sempre unindo técnica e criatividade para entregar resultados consistentes. Acredito em processos colaborativos, comunicação direta e, acima de tudo, em criar projetos que realmente façam diferença. Vamos dar vida à sua ideia?
+              {t('about.desc')}
             </p>
           </motion.div>
         </div>
