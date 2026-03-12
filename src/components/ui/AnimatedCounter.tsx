@@ -9,7 +9,7 @@ interface AnimatedCounterProps {
 
 export function AnimatedCounter({ value, suffix = "", duration = 2 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   useEffect(() => {
     if (isInView && ref.current) {
@@ -26,5 +26,5 @@ export function AnimatedCounter({ value, suffix = "", duration = 2 }: AnimatedCo
     }
   }, [isInView, value, duration, suffix]);
 
-  return <span ref={ref}>0{suffix}</span>;
+  return <span ref={ref} className="inline-block min-w-[1ch]">0{suffix}</span>;
 }
