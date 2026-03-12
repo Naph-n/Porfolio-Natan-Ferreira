@@ -2,10 +2,12 @@ import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useLoading } from "../contexts/LoadingContext";
 import { useState, useEffect, useRef } from "react";
 
 export function Testimonials() {
   const { t } = useLanguage();
+  const { isLoading } = useLoading();
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -119,7 +121,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
@@ -128,7 +130,7 @@ export function Testimonials() {
             {t('testimonials.badge')}
           </span>
           <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
-            <AnimatedText text={t('testimonials.title')} />
+            <AnimatedText text={t('testimonials.title')} trigger={!isLoading} />
           </h3>
           <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600">
             {t('testimonials.subtitle')}

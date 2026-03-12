@@ -42,7 +42,6 @@ export function AnimatedText({ text, className = '', delay = 0, trigger = true }
       className={`${className}`}
       variants={container}
       initial="hidden"
-      animate={trigger ? "visible" : "hidden"}
       whileInView={trigger ? "visible" : "hidden"}
       viewport={{ once: true, margin: "-10%" }}
     >

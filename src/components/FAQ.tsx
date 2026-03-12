@@ -3,9 +3,11 @@ import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useLoading } from "../contexts/LoadingContext";
 
 export function FAQ() {
   const { t } = useLanguage();
+  const { isLoading } = useLoading();
 
   const faqs = [
     {
@@ -33,7 +35,7 @@ export function FAQ() {
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
@@ -42,8 +44,8 @@ export function FAQ() {
             {t('faq.badge')}
           </span>
           <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
-            <AnimatedText text={t('faq.title1')} /><br />
-            <AnimatedText text={t('faq.title2')} />
+            <AnimatedText text={t('faq.title1')} trigger={!isLoading} /><br />
+            <AnimatedText text={t('faq.title2')} trigger={!isLoading} />
           </h3>
           <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600">
             {t('faq.subtitle')}
@@ -55,7 +57,7 @@ export function FAQ() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="overflow-hidden rounded-3xl border border-gray-200 bg-white"

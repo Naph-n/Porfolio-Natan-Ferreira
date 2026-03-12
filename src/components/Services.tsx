@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Plus, Minus, MonitorPlay, Camera, PenTool, Layout, Layers, Video } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useLoading } from "../contexts/LoadingContext";
 
 export function Services() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const { t } = useLanguage();
+  const { isLoading } = useLoading();
 
   const services = [
     {
@@ -52,7 +54,7 @@ export function Services() {
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16 text-center flex flex-col items-center"
@@ -61,7 +63,7 @@ export function Services() {
             {t('services.badge')}
           </span>
           <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl">
-            <AnimatedText text={t('services.title')} />
+            <AnimatedText text={t('services.title')} trigger={!isLoading} />
           </h3>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">
             {t('services.subtitle')}
@@ -71,7 +73,7 @@ export function Services() {
         <div className="grid gap-12 lg:grid-cols-2 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={!isLoading ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="aspect-[4/5] lg:aspect-auto h-full min-h-[400px] w-full overflow-hidden rounded-3xl bg-gray-200 relative"
@@ -96,7 +98,7 @@ export function Services() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="border-b border-gray-200 last:border-0"

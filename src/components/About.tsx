@@ -60,7 +60,7 @@ export function About() {
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
@@ -76,7 +76,7 @@ export function About() {
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center"
@@ -152,7 +152,7 @@ export function About() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
