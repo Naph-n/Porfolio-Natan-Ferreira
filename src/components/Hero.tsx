@@ -9,8 +9,19 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-20 text-white">
-      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16 items-center">
-        <div className="relative z-10">
+      {/* Background Image with Overlay - Only visible on mobile/tablet */}
+      <div 
+        className="absolute inset-0 z-0 lg:hidden"
+        style={{
+          backgroundImage: 'url("https://storage.cloud.google.com/portfolionatan/Website/Imagem%20Header.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div className="absolute inset-0 z-0 bg-black/80 lg:hidden" />
+
+      <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16 items-center relative z-10">
+        <div className="relative z-10 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,7 +35,7 @@ export function Hero() {
             {t('hero.badge')}
           </motion.div>
 
-          <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
             <AnimatedText text={t('hero.title')} delay={1.0} />
           </h1>
 
@@ -54,15 +65,16 @@ export function Hero() {
           </motion.div>
         </div>
 
+        {/* Shape Image - Only visible on desktop */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 1.0 }}
-          className="relative mx-auto w-full max-w-md lg:max-w-[420px]"
+          className="relative mx-auto w-full max-w-md lg:max-w-[540px] hidden lg:block"
         >
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+              src="https://storage.cloud.google.com/portfolionatan/Website/Imagem%20Header.png"
               alt="Natan"
               className="h-full w-full object-cover"
               referrerPolicy="no-referrer"

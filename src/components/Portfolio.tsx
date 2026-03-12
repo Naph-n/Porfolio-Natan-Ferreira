@@ -12,13 +12,13 @@ export function Portfolio() {
       title: t('portfolio.p1.title'),
       description: t('portfolio.p1.desc'),
       href: "https://www.behance.net/natanaeferreir7",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/4TKOpYQhWUolL0xFd51PDZGrQ.png?width=1441&height=674",
     },
     {
       title: t('portfolio.p2.title'),
       description: t('portfolio.p2.desc'),
       href: "https://www.instagram.com/naph.n/",
-      image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=2000&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/J8mNsGekYsZ8avro8XiZDXqCaeE.jpg?width=1080&height=1350",
     },
   ];
 

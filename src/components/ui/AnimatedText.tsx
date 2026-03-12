@@ -37,6 +37,7 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
 
   return (
     <motion.span
+      key={text}
       className={`${className}`}
       variants={container}
       initial="hidden"

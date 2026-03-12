@@ -2,46 +2,49 @@ import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useState, useEffect, useRef } from "react";
 
 export function Testimonials() {
   const { t } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const testimonials = [
     {
       text: t('testimonials.t1.text'),
       author: "Igor Araujo",
       role: t('testimonials.t1.role'),
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/BF2pnbmEVg8fwWKNvqjCuITC6c.jpg?width=226&height=227",
     },
     {
       text: t('testimonials.t2.text'),
       author: "Renan Rosina",
       role: t('testimonials.t2.role'),
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/N5iwTUINa2C28soU5viPZCRemA.jpg?lossless=1&width=400&height=400",
     },
     {
       text: t('testimonials.t3.text'),
       author: "Gabriela Vieira",
       role: t('testimonials.t3.role'),
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/V4vBsz4jeA8RNX2ReNbWpPy36h0.jpg?width=307&height=278",
     },
     {
       text: t('testimonials.t4.text'),
       author: "Claudia Voltolini",
       role: t('testimonials.t4.role'),
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/JZ9ey185k6oq3HsXoKZ5WvLTrU.png?scale-down-to=512&lossless=1&width=640&height=640",
     },
     {
       text: t('testimonials.t5.text'),
       author: "Marcelo Speltz",
       role: t('testimonials.t5.role'),
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/3QNqbdcY5yirEIF6Pkyf7de3BCs.jpg?lossless=1&width=293&height=300",
     },
     {
       text: t('testimonials.t6.text'),
       author: "Emerson Ferreira",
       role: t('testimonials.t6.role'),
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop",
+      image: "https://framerusercontent.com/images/GTCXidEu7FrWoEAklDOqeFhJM.png?scale-down-to=512&lossless=1&width=640&height=640",
     },
   ];
 
@@ -49,12 +52,42 @@ export function Testimonials() {
   const row1 = [testimonials[0], testimonials[1], testimonials[2], testimonials[0], testimonials[1], testimonials[2]];
   const row2 = [testimonials[3], testimonials[4], testimonials[5], testimonials[3], testimonials[4], testimonials[5]];
 
-  const TestimonialCard = ({ testimonial, index }: { testimonial: any, index: number, key?: string | number }) => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (window.innerWidth < 768) {
+        setCurrentIndex((prev) => {
+          const next = (prev + 1) % testimonials.length;
+          if (scrollContainerRef.current) {
+            const cardWidth = scrollContainerRef.current.offsetWidth;
+            scrollContainerRef.current.scrollTo({
+              left: next * cardWidth,
+              behavior: 'smooth'
+            });
+          }
+          return next;
+        });
+      }
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const scrollPosition = scrollContainerRef.current.scrollLeft;
+      const cardWidth = scrollContainerRef.current.offsetWidth;
+      const newIndex = Math.round(scrollPosition / cardWidth);
+      if (newIndex !== currentIndex) {
+        setCurrentIndex(newIndex);
+      }
+    }
+  };
+
+  const TestimonialCard = ({ testimonial, index, className = "" }: { testimonial: any, index: number, className?: string }) => {
     // Alternating background colors (very subtle difference)
     const bgColor = index % 2 === 0 ? "bg-gray-50" : "bg-white";
 
     return (
-      <div className={`flex w-[320px] md:w-[400px] lg:w-[450px] shrink-0 flex-col justify-between rounded-3xl border border-gray-100 p-8 ${bgColor}`}>
+      <div className={`flex w-[320px] md:w-[400px] lg:w-[450px] shrink-0 flex-col justify-between rounded-3xl border border-gray-100 p-8 ${bgColor} ${className}`}>
         <div>
           <div className="mb-6 flex gap-1">
             {[...Array(5)].map((_, i) => (
@@ -104,31 +137,65 @@ export function Testimonials() {
       </div>
 
       <div className="relative w-full overflow-hidden mt-16 flex flex-col gap-6">
-        {/* Row 1 - Moves Left */}
-        <div className="flex w-full gap-6">
-          <div className="flex shrink-0 animate-marquee gap-6">
-            {row1.map((testimonial, index) => (
-              <TestimonialCard key={`r1a-${index}`} testimonial={testimonial} index={index} />
+        {/* Mobile Swipeable Carousel */}
+        <div className="md:hidden w-full">
+          <div 
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex w-full snap-x snap-mandatory overflow-x-auto pb-8 scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="w-full shrink-0 snap-center px-6">
+                <TestimonialCard 
+                  testimonial={testimonial} 
+                  index={index} 
+                  className="w-full"
+                />
+              </div>
             ))}
           </div>
-          <div className="flex shrink-0 animate-marquee gap-6" aria-hidden="true">
-            {row1.map((testimonial, index) => (
-              <TestimonialCard key={`r1b-${index}`} testimonial={testimonial} index={index} />
+          {/* Progress Indicators */}
+          <div className="flex justify-center gap-2 mt-2">
+            {testimonials.map((_, idx) => (
+              <div
+                key={idx}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === currentIndex ? "w-6 bg-blue-600" : "w-1.5 bg-gray-300"
+                }`}
+              />
             ))}
           </div>
         </div>
 
-        {/* Row 2 - Moves Right */}
-        <div className="flex w-full gap-6">
-          <div className="flex shrink-0 animate-marquee-reverse gap-6">
-            {row2.map((testimonial, index) => (
-              <TestimonialCard key={`r2a-${index}`} testimonial={testimonial} index={index} />
-            ))}
+        {/* Desktop Marquee */}
+        <div className="hidden md:flex flex-col gap-6">
+          {/* Row 1 - Moves Left */}
+          <div className="flex w-full gap-6">
+            <div className="flex shrink-0 animate-marquee gap-6">
+              {row1.map((testimonial, index) => (
+                <TestimonialCard key={`r1a-${index}`} testimonial={testimonial} index={index} />
+              ))}
+            </div>
+            <div className="flex shrink-0 animate-marquee gap-6" aria-hidden="true">
+              {row1.map((testimonial, index) => (
+                <TestimonialCard key={`r1b-${index}`} testimonial={testimonial} index={index} />
+              ))}
+            </div>
           </div>
-          <div className="flex shrink-0 animate-marquee-reverse gap-6" aria-hidden="true">
-            {row2.map((testimonial, index) => (
-              <TestimonialCard key={`r2b-${index}`} testimonial={testimonial} index={index} />
-            ))}
+
+          {/* Row 2 - Moves Right */}
+          <div className="flex w-full gap-6">
+            <div className="flex shrink-0 animate-marquee-reverse gap-6">
+              {row2.map((testimonial, index) => (
+                <TestimonialCard key={`r2a-${index}`} testimonial={testimonial} index={index} />
+              ))}
+            </div>
+            <div className="flex shrink-0 animate-marquee-reverse gap-6" aria-hidden="true">
+              {row2.map((testimonial, index) => (
+                <TestimonialCard key={`r2b-${index}`} testimonial={testimonial} index={index} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

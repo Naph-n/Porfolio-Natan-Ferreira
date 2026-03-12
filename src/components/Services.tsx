@@ -13,31 +13,37 @@ export function Services() {
       icon: <Video className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s1.title'),
       description: t('services.s1.desc'),
+      image: "https://framerusercontent.com/images/8sxcIE8SqhO4Y5dBt49jo1XfTQ.jpg?width=819&height=1024"
     },
     {
       icon: <Camera className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s2.title'),
       description: t('services.s2.desc'),
+      image: "https://framerusercontent.com/images/8945PiG8F5HC98uXVZI3iGl0c7M.jpg?width=819&height=1024"
     },
     {
       icon: <PenTool className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s3.title'),
       description: t('services.s3.desc'),
+      image: "https://framerusercontent.com/images/NFKxJY6VRfVd8PVd2Yo86uXCOg.jpg?width=819&height=1024"
     },
     {
       icon: <Layers className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s4.title'),
       description: t('services.s4.desc'),
+      image: "https://framerusercontent.com/images/HtO2WBzVgCG11KMOJq1xmZqmg.jpg?width=819&height=1024"
     },
     {
       icon: <Layout className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s5.title'),
       description: t('services.s5.desc'),
+      image: "https://framerusercontent.com/images/v7EZjAXKaikiVYcxU3YVRrtjs.jpg?width=819&height=1024"
     },
     {
       icon: <MonitorPlay className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s6.title'),
       description: t('services.s6.desc'),
+      image: "https://framerusercontent.com/images/xmWxmcd8Pgc7uUqSygvL6PRYJY.gif?width=818&height=1024"
     },
   ];
 
@@ -68,14 +74,21 @@ export function Services() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="aspect-[4/5] lg:aspect-auto h-full min-h-[400px] w-full overflow-hidden rounded-3xl bg-gray-200"
+            className="aspect-[4/5] lg:aspect-auto h-full min-h-[400px] w-full overflow-hidden rounded-3xl bg-gray-200 relative"
           >
-            <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" 
-              alt="Service" 
-              className="h-full w-full object-cover"
-              referrerPolicy="no-referrer"
-            />
+            <AnimatePresence mode="wait">
+              <motion.img 
+                key={openIndex ?? 'default'}
+                src={services[openIndex ?? 0].image} 
+                alt="Service" 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 h-full w-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </AnimatePresence>
           </motion.div>
 
           <div className="flex flex-col gap-4">

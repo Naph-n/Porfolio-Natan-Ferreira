@@ -59,7 +59,6 @@ export function Contact() {
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.office')}</h4>
                   <p className="text-white/60">Mato Grosso - Brasil</p>
-                  <p className="text-white/60">167-169 Great Portland Street, W1W 5PF</p>
                 </div>
               </div>
 
