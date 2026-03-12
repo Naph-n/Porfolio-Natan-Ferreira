@@ -13,7 +13,7 @@ export function Hero() {
       <div 
         className="absolute inset-0 z-0 lg:hidden"
         style={{
-          backgroundImage: 'url("https://storage.cloud.google.com/portfolionatan/Website/Imagem%20Header.png")',
+          backgroundImage: 'url("https://framerusercontent.com/images/aCi97T93KLAF5XkrpugqlKPKpc.png?scale-down-to=2048&width=4096&height=4096")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -74,7 +74,7 @@ export function Hero() {
         >
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">
             <img
-              src="https://storage.cloud.google.com/portfolionatan/Website/Imagem%20Header.png"
+              src="https://framerusercontent.com/images/aCi97T93KLAF5XkrpugqlKPKpc.png?scale-down-to=2048&width=4096&height=4096"
               alt="Natan"
               className="h-full w-full object-cover"
               referrerPolicy="no-referrer"
