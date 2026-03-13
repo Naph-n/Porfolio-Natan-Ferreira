@@ -65,7 +65,9 @@ export function Navbar() {
 
             {/* CV Button */}
             <motion.a
-              href="#"
+              href="https://storage.googleapis.com/portfolionatan/Website/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: -20 }}
               animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
