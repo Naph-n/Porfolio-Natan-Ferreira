@@ -15,6 +15,7 @@ import { FAQ } from "./components/FAQ";
 import { Contact } from "./components/Contact";
 import { CustomScrollbar } from "./components/CustomScrollbar";
 import { LanguageToggle } from "./components/LanguageToggle";
+import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
 
 import { useLoading } from "./contexts/LoadingContext";
@@ -52,6 +53,7 @@ export default function App() {
       <Preloader onComplete={() => setIsLoading(false)} />
       <div className={`relative min-h-screen selection:bg-blue-500/30 transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         <CustomScrollbar />
+        <BackToTop />
         <LanguageToggle />
         <Navbar />
         <main>
