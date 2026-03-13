@@ -10,11 +10,13 @@ import { useLoading } from "../contexts/LoadingContext";
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg(null);
     
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
@@ -34,6 +36,8 @@ export function Contact() {
         body: JSON.stringify(data),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         setIsSuccess(true);
         form.reset();
@@ -43,10 +47,11 @@ export function Contact() {
           setIsSuccess(false);
         }, 5000);
       } else {
-        const errorData = await response.json();
-        console.error("Erro no envio:", errorData.message || errorData.error);
+        setErrorMsg(result.message || result.error || "Erro ao enviar mensagem. Tente novamente.");
+        console.error("Erro no envio:", result);
       }
     } catch (error) {
+      setErrorMsg("Erro de conexão. Verifique sua internet.");
       console.error("Erro ao enviar contato:", error);
     } finally {
       setIsSubmitting(false);
@@ -189,6 +194,15 @@ export function Contact() {
               </div>
 
               <div className="mt-auto pt-8">
+                {errorMsg && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-4 rounded-xl bg-red-500/10 p-4 text-sm text-red-500 border border-red-500/20"
+                  >
+                    {errorMsg}
+                  </motion.div>
+                )}
                 {isSuccess ? (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}

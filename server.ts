@@ -21,21 +21,23 @@ async function startServer() {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (!resendApiKey || resendApiKey.trim() === "") {
-      console.error("ERRO CRÍTICO: RESEND_API_KEY não encontrada.");
-      console.error("Variáveis de ambiente detectadas (nomes):", Object.keys(process.env).filter(k => !k.startsWith('GOOGLE_') && !k.startsWith('X_GOOGLE_')));
-      
+    if (!resendApiKey || resendApiKey.trim() === "" || resendApiKey.includes("YOUR_")) {
+      console.error("ERRO: RESEND_API_KEY não configurada ou inválida.");
       return res.status(500).json({ 
-        error: "Configuração incompleta no Cloud Run.", 
-        message: "A variável RESEND_API_KEY não foi detectada pelo servidor. Verifique se o nome está correto e se você clicou em 'Deploy' no Cloud Run." 
+        error: "Configuração ausente", 
+        message: "A chave da API do Resend não foi configurada. Por favor, adicione RESEND_API_KEY aos segredos do projeto." 
       });
     }
 
     try {
       const resend = new Resend(resendApiKey);
       
+      // Usando onboarding@resend.dev como remetente padrão se o domínio não estiver verificado
+      // Isso garante que o envio funcione para o dono da conta Resend
+      const fromEmail = 'onboarding@resend.dev';
+      
       const { data, error } = await resend.emails.send({
-        from: 'Natan Ferreira <contato@natanferreira.com.br>',
+        from: `Portfolio <${fromEmail}>`,
         to: 'natan.furtado@outlook.com',
         replyTo: email as string,
         subject: `Novo contato: ${name}`,
