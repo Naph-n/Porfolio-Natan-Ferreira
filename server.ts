@@ -32,12 +32,12 @@ async function startServer() {
     try {
       const resend = new Resend(resendApiKey);
       
-      // Usando onboarding@resend.dev como remetente padrão se o domínio não estiver verificado
-      // Isso garante que o envio funcione para o dono da conta Resend
-      const fromEmail = 'onboarding@resend.dev';
+      // Como o usuário confirmou que o domínio está verificado, 
+      // devemos usar um e-mail do domínio próprio para evitar as restrições do modo Sandbox.
+      const fromEmail = 'contato@natanferreira.com.br';
       
       const { data, error } = await resend.emails.send({
-        from: `Portfolio <${fromEmail}>`,
+        from: `Natan Ferreira <${fromEmail}>`,
         to: 'natan.furtado@outlook.com',
         replyTo: email as string,
         subject: `Novo contato: ${name}`,
