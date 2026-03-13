@@ -7,7 +7,6 @@ import { useLoading } from "../contexts/LoadingContext";
 
 export function Hero() {
   const { t } = useLanguage();
-  const { isLoading } = useLoading();
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-20 text-white">
@@ -26,7 +25,7 @@ export function Hero() {
         <div className="relative z-10 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/80"
           >
@@ -38,12 +37,12 @@ export function Hero() {
           </motion.div>
 
           <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
-            <AnimatedText text={t('hero.title')} delay={1.0} trigger={!isLoading} />
+            <AnimatedText text={t('hero.title')} delay={1.0} />
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.2 }}
             className="mt-6 max-w-lg text-lg text-white/70"
           >
@@ -52,7 +51,7 @@ export function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.4 }}
             className="mt-10"
           >
@@ -70,7 +69,7 @@ export function Hero() {
         {/* Shape Image - Only visible on desktop */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
-          animate={!isLoading ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 1.0 }}
           className="relative mx-auto w-full max-w-md lg:max-w-[540px] hidden lg:block will-change-transform"
         >

@@ -24,8 +24,6 @@ export default function App() {
   const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
-    if (isLoading) return;
-
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -46,26 +44,29 @@ export default function App() {
     return () => {
       lenis.destroy();
     };
-  }, [isLoading]);
+  }, []);
 
   return (
     <>
-      <Preloader onComplete={() => setIsLoading(false)} />
-      <div className={`relative min-h-screen selection:bg-blue-500/30 transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        <CustomScrollbar />
-        <BackToTop />
-        <LanguageToggle />
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Services />
-          <Portfolio />
-          <Testimonials />
-          <FAQ />
-          <Contact />
-        </main>
-      </div>
+      {isLoading ? (
+        <Preloader onComplete={() => setIsLoading(false)} />
+      ) : (
+        <div className="relative min-h-screen selection:bg-blue-500/30">
+          <CustomScrollbar />
+          <BackToTop />
+          <LanguageToggle />
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Services />
+            <Portfolio />
+            <Testimonials />
+            <FAQ />
+            <Contact />
+          </main>
+        </div>
+      )}
     </>
   );
 }

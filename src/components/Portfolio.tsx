@@ -7,7 +7,6 @@ import { useLoading } from "../contexts/LoadingContext";
 
 export function Portfolio() {
   const { t } = useLanguage();
-  const { isLoading } = useLoading();
 
   const links = [
     {
@@ -29,7 +28,7 @@ export function Portfolio() {
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16"
@@ -38,8 +37,8 @@ export function Portfolio() {
             {t('portfolio.badge')}
           </span>
           <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
-            <AnimatedText text={t('portfolio.title1')} delay={0.1} trigger={!isLoading} /><br />
-            <AnimatedText text={t('portfolio.title2')} delay={0.3} trigger={!isLoading} /><span className="text-blue-500"><AnimatedText text={t('portfolio.title3')} delay={0.4} trigger={!isLoading} /></span>
+            <AnimatedText text={t('portfolio.title1')} delay={0.1} /><br />
+            <AnimatedText text={t('portfolio.title2')} delay={0.3} /><span className="text-blue-500"><AnimatedText text={t('portfolio.title3')} delay={0.4} /></span>
           </h3>
         </motion.div>
 
@@ -51,7 +50,7 @@ export function Portfolio() {
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group/card relative grid gap-8 overflow-hidden rounded-[2rem] bg-[#1a1a1a] p-8 transition-colors hover:bg-[#222] md:min-h-[500px] lg:min-h-[600px] md:grid-cols-2 md:p-12"

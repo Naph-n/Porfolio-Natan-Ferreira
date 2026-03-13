@@ -11,7 +11,6 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { t } = useLanguage();
-  const { isLoading } = useLoading();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +61,7 @@ export function Contact() {
           {/* Left Column: Header & Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            whileInView={!isLoading ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="flex flex-col"
@@ -71,7 +70,7 @@ export function Contact() {
               {t('contact.badge')}
             </span>
             <h3 className="mb-6 font-display text-5xl font-normal tracking-tight sm:text-6xl">
-              <AnimatedText text={t('contact.title')} trigger={!isLoading} />
+              <AnimatedText text={t('contact.title')} />
             </h3>
             <p className="mb-12 max-w-md text-lg text-white/70">
               {t('contact.subtitle')}
@@ -129,7 +128,7 @@ export function Contact() {
           {/* Right Column: Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            whileInView={!isLoading ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="flex h-full flex-col rounded-[2rem] bg-[#111] p-8 md:p-12"

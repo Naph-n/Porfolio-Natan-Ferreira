@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 export function About() {
   const { t } = useLanguage();
-  const { isLoading } = useLoading();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const stats = [
@@ -60,7 +59,7 @@ export function About() {
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
@@ -68,15 +67,15 @@ export function About() {
               {t('about.badge')}
             </span>
             <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl leading-tight">
-              <AnimatedText text={t('about.title1')} delay={0.1} trigger={!isLoading} /><br />
-              <AnimatedText text={t('about.title2')} delay={0.3} trigger={!isLoading} /><br />
-              <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} trigger={!isLoading} /></span>
+              <AnimatedText text={t('about.title1')} delay={0.1} /><br />
+              <AnimatedText text={t('about.title2')} delay={0.3} /><br />
+              <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} /></span>
             </h3>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center"
@@ -152,7 +151,7 @@ export function About() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
