@@ -13,21 +13,47 @@ export function Contact() {
   const { t } = useLanguage();
   const { isLoading } = useLoading();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const response = await fetch('/api/enviar-contato', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        form.reset();
+        alert('Mensagem enviada com sucesso!');
+        
+        // Reset success state after 5 seconds
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 5000);
+      } else {
+        const errorData = await response.json();
+        alert(`Erro: ${errorData.error || 'Falha ao enviar mensagem'}`);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar contato:", error);
+      alert('Erro ao conectar com o servidor. Tente novamente mais tarde.');
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-        (e.target as HTMLFormElement).reset();
-      }, 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -118,6 +144,7 @@ export function Contact() {
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       required
                       disabled={isSubmitting || isSuccess}
                       className="rounded-xl bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:bg-white/10 disabled:opacity-50"
@@ -129,6 +156,7 @@ export function Contact() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       required
                       disabled={isSubmitting || isSuccess}
                       className="rounded-xl bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:bg-white/10 disabled:opacity-50"
@@ -142,6 +170,7 @@ export function Contact() {
                   <input
                     type="tel"
                     id="phone"
+                    name="phone"
                     disabled={isSubmitting || isSuccess}
                     className="rounded-xl bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:bg-white/10 disabled:opacity-50"
                     placeholder={t('contact.form.phone.placeholder')}
@@ -152,6 +181,7 @@ export function Contact() {
                   <label htmlFor="message" className="text-sm font-medium text-white/80">{t('contact.form.message')}</label>
                   <textarea
                     id="message"
+                    name="message"
                     required
                     rows={4}
                     disabled={isSubmitting || isSuccess}
