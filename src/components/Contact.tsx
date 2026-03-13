@@ -46,7 +46,7 @@ export function Contact() {
         }, 5000);
       } else {
         const errorData = await response.json();
-        alert(`Erro: ${errorData.error || 'Falha ao enviar mensagem'}`);
+        alert(`Erro: ${errorData.message || errorData.error || 'Falha ao enviar mensagem'}`);
       }
     } catch (error) {
       console.error("Erro ao enviar contato:", error);

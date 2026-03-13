@@ -21,19 +21,21 @@ async function startServer() {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (!resendApiKey) {
-      console.error("ERRO: RESEND_API_KEY não encontrada no ambiente.");
-      return res.status(500).json({ error: "Configuração do servidor incompleta (API Key)." });
+    if (!resendApiKey || resendApiKey.trim() === "") {
+      console.error("ERRO CRÍTICO: RESEND_API_KEY está vazia ou não foi configurada no Cloud Run.");
+      return res.status(500).json({ 
+        error: "Configuração incompleta no Cloud Run.", 
+        message: "A variável RESEND_API_KEY não foi encontrada. Verifique as variáveis de ambiente do seu serviço no Google Cloud Console." 
+      });
     }
 
     try {
       const resend = new Resend(resendApiKey);
       
-      // Resend validation_error often relates to the 'from' field or missing fields
       const { data, error } = await resend.emails.send({
         from: 'Natan Ferreira <contato@natanferreira.com.br>',
         to: 'natan.furtado@outlook.com',
-        reply_to: email as string, // Permite responder diretamente ao cliente e melhora reputação
+        replyTo: email as string,
         subject: `Novo contato: ${name}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
@@ -54,8 +56,9 @@ async function startServer() {
       if (error) {
         console.error("Erro detalhado do Resend:", JSON.stringify(error, null, 2));
         return res.status(400).json({ 
-          error: "Erro de validação no envio do e-mail.", 
-          details: error 
+          error: "Erro na API do Resend", 
+          message: error.message,
+          type: error.name 
         });
       }
 
