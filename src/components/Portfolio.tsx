@@ -75,6 +75,7 @@ export function Portfolio() {
                   alt={link.title}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/80 to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" />
               </div>

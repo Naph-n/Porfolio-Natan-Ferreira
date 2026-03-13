@@ -23,23 +23,23 @@ export function AnimatedText({ text, className = '', delay = 0, trigger = true }
   const child = {
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         type: 'tween' as const,
-        ease: [0.19, 1.0, 0.22, 1.0] as [number, number, number, number], // easeOutExpo approximation
+        ease: [0.19, 1.0, 0.22, 1.0] as [number, number, number, number],
         duration: 1.2,
       },
     },
     hidden: {
       opacity: 0,
-      x: 40,
+      y: 20,
     },
   };
 
   return (
     <motion.span
       key={text}
-      className={`${className}`}
+      className={`${className} inline-block`}
       variants={container}
       initial="hidden"
       whileInView={trigger ? "visible" : "hidden"}
@@ -47,17 +47,12 @@ export function AnimatedText({ text, className = '', delay = 0, trigger = true }
     >
       {words.map((word, wordIndex) => (
         <React.Fragment key={wordIndex}>
-          <span className="inline-block whitespace-nowrap">
-            {Array.from(word).map((letter, letterIndex) => (
-              <motion.span
-                key={letterIndex}
-                variants={child}
-                className="inline-block"
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </span>
+          <motion.span
+            variants={child}
+            className="inline-block"
+          >
+            {word}
+          </motion.span>
           {wordIndex !== words.length - 1 && " "}
         </React.Fragment>
       ))}

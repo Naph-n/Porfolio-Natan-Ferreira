@@ -15,6 +15,18 @@
   --animate-marquee-reverse: marquee-reverse 60s linear infinite;
 }
 
+.animate-marquee {
+  will-change: transform;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(calc(-100% - 1rem)); }

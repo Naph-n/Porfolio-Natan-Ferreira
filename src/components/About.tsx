@@ -128,7 +128,7 @@ export function About() {
                 key={`a-${idx}`}
                 className="h-80 md:h-[28rem] lg:h-[36rem] aspect-[4/5] shrink-0 overflow-hidden bg-gray-100"
               >
-                <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
               </div>
             ))}
           </div>
@@ -138,7 +138,7 @@ export function About() {
                 key={`b-${idx}`}
                 className="h-80 md:h-[28rem] lg:h-[36rem] aspect-[4/5] shrink-0 overflow-hidden bg-gray-100"
               >
-                <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
               </div>
             ))}
           </div>
@@ -160,7 +160,7 @@ export function About() {
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>
-              <p className="text-sm text-gray-500">{stat.description}</p>
+              <p className="text-base text-gray-600 leading-relaxed">{stat.description}</p>
             </motion.div>
           ))}
         </div>

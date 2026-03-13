@@ -89,6 +89,7 @@ export function Services() {
                 transition={{ duration: 0.3 }}
                 className="absolute inset-0 h-full w-full object-cover"
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
             </AnimatePresence>
           </motion.div>
@@ -105,7 +106,7 @@ export function Services() {
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="flex w-full items-center justify-between py-6 text-left"
+                  className="flex w-full cursor-pointer items-center justify-between py-6 text-left"
                 >
                   <div className="flex items-center gap-4">
                     <div className="flex items-center justify-center">

@@ -7,65 +7,47 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
 
   useEffect(() => {
     let mounted = true;
-    const minDuration = 3000; // Increased to 3 seconds for better visibility
-    let startTime: number;
+    const duration = 2500; // 2.5 seconds total
+    const startTime = Date.now();
+    
+    const updateProgress = () => {
+      if (!mounted) return;
 
-    // Small delay before starting to ensure the component is fully painted
-    const startTimeout = setTimeout(() => {
-      startTime = Date.now();
+      const elapsed = Date.now() - startTime;
+      const rawProgress = (elapsed / duration) * 100;
       
-      const interval = setInterval(() => {
-        if (!mounted) {
-          clearInterval(interval);
-          return;
-        }
+      // Add a bit of "fictitious" easing to make it feel more natural
+      // It slows down as it reaches 90% and then "jumps" to 100%
+      let displayProgress = rawProgress;
+      if (rawProgress < 80) {
+        displayProgress = rawProgress;
+      } else if (rawProgress < 95) {
+        // Slow down at the end
+        displayProgress = 80 + (rawProgress - 80) * 0.5;
+      } else {
+        displayProgress = 100;
+      }
 
-        const elapsed = Date.now() - startTime;
-        const timeProgress = (elapsed / minDuration) * 100;
-        
-        // We want the bar to move even if images are cached
-        // So we use timeProgress as the base
-        const currentProgress = Math.min(timeProgress, 100);
-        setProgress(currentProgress);
+      setProgress(Math.min(displayProgress, 100));
 
-        if (currentProgress >= 100) {
-          clearInterval(interval);
-          
-          // Check if images are also loaded (or just finish after a small extra buffer)
-          const images = Array.from(document.querySelectorAll("img"));
-          const allLoaded = images.every(img => img.complete);
-          
-          const finish = () => {
-            setTimeout(() => {
-              if (mounted) {
-                setIsExit(true);
-                setTimeout(onComplete, 800);
-              }
-            }, 500);
-          };
-
-          if (allLoaded) {
-            finish();
-          } else {
-            // Wait for images but don't hang forever
-            const checkImages = setInterval(() => {
-              if (images.every(img => img.complete)) {
-                clearInterval(checkImages);
-                finish();
-              }
-            }, 100);
-            setTimeout(() => {
-              clearInterval(checkImages);
-              finish();
-            }, 2000); // Max 2s extra wait
+      if (elapsed < duration) {
+        requestAnimationFrame(updateProgress);
+      } else {
+        // Finalize
+        setProgress(100);
+        setTimeout(() => {
+          if (mounted) {
+            setIsExit(true);
+            setTimeout(onComplete, 800);
           }
-        }
-      }, 16); // ~60fps for smoother updates
-    }, 100);
+        }, 400);
+      }
+    };
+
+    requestAnimationFrame(updateProgress);
 
     return () => {
       mounted = false;
-      clearTimeout(startTimeout);
     };
   }, [onComplete]);
 
@@ -76,7 +58,7 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: -100 }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white will-change-transform"
         >
           <div className="flex flex-col items-center gap-10">
             <motion.div

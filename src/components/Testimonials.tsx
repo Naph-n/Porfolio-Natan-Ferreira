@@ -106,6 +106,7 @@ export function Testimonials() {
             alt={testimonial.author} 
             className="h-12 w-12 shrink-0 aspect-square rounded-full object-cover"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
           <div>
             <h4 className="font-medium text-black">{testimonial.author}</h4>

@@ -72,7 +72,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={!isLoading ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.7, delay: 1.0 }}
-          className="relative mx-auto w-full max-w-md lg:max-w-[540px] hidden lg:block"
+          className="relative mx-auto w-full max-w-md lg:max-w-[540px] hidden lg:block will-change-transform"
         >
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">
             <img
@@ -80,6 +80,7 @@ export function Hero() {
               alt="Natan"
               className="h-full w-full object-cover"
               referrerPolicy="no-referrer"
+              fetchPriority="high"
             />
           </div>
         </motion.div>
