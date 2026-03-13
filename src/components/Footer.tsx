@@ -12,6 +12,7 @@ export function Footer() {
     { name: t('nav.testimonials'), href: "#testimonials" },
     { name: t('nav.faqs'), href: "#faqs" },
     { name: t('nav.contact'), href: "#contact" },
+    { name: t('nav.resume'), href: "https://storage.cloud.google.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf", isExternal: true },
   ];
 
   return (
@@ -37,6 +38,8 @@ export function Footer() {
               <a
                 key={link.name}
                 href={link.href}
+                target={link.isExternal ? "_blank" : undefined}
+                rel={link.isExternal ? "noopener noreferrer" : undefined}
                 className="text-sm font-medium text-white/70 transition-colors hover:text-white"
               >
                 {link.name}
