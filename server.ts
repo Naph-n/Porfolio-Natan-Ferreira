@@ -22,10 +22,12 @@ async function startServer() {
 
     const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey || resendApiKey.trim() === "") {
-      console.error("ERRO CRÍTICO: RESEND_API_KEY está vazia ou não foi configurada no Cloud Run.");
+      console.error("ERRO CRÍTICO: RESEND_API_KEY não encontrada.");
+      console.error("Variáveis de ambiente detectadas (nomes):", Object.keys(process.env).filter(k => !k.startsWith('GOOGLE_') && !k.startsWith('X_GOOGLE_')));
+      
       return res.status(500).json({ 
         error: "Configuração incompleta no Cloud Run.", 
-        message: "A variável RESEND_API_KEY não foi encontrada. Verifique as variáveis de ambiente do seu serviço no Google Cloud Console." 
+        message: "A variável RESEND_API_KEY não foi detectada pelo servidor. Verifique se o nome está correto e se você clicou em 'Deploy' no Cloud Run." 
       });
     }
 

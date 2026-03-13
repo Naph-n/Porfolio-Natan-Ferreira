@@ -38,7 +38,6 @@ export function Contact() {
       if (response.ok) {
         setIsSuccess(true);
         form.reset();
-        alert('Mensagem enviada com sucesso!');
         
         // Reset success state after 5 seconds
         setTimeout(() => {
@@ -46,11 +45,10 @@ export function Contact() {
         }, 5000);
       } else {
         const errorData = await response.json();
-        alert(`Erro: ${errorData.message || errorData.error || 'Falha ao enviar mensagem'}`);
+        console.error("Erro no envio:", errorData.message || errorData.error);
       }
     } catch (error) {
       console.error("Erro ao enviar contato:", error);
-      alert('Erro ao conectar com o servidor. Tente novamente mais tarde.');
     } finally {
       setIsSubmitting(false);
     }
