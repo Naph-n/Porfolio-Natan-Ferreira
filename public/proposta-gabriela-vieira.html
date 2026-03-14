@@ -80,15 +80,25 @@
 
         h1 {
             font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-weight: 500; /* Mais regular */
+            margin-bottom: 24px;
             color: white;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
         h1 span {
             color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .subtitle-h1 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--muted-text);
+            display: block;
+            margin-top: 4px;
+            letter-spacing: 0;
         }
 
         h2 {
@@ -335,7 +345,10 @@
 
     <main>
         <div class="proposal-container">
-            <h1 id="titulo-proposta"><span>Proposta</span>: Website Profissional de Autoridade</h1>
+            <h1 id="titulo-proposta">
+                <span>Proposta</span> - Gabriela Vieira
+                <span class="subtitle-h1">Website profissional de autoridade</span>
+            </h1>
             <div class="divider"></div>
             <p class="client-info">Cliente: <strong>Gabriela Vieira</strong> – Entomologista<br>
             <span style="font-size: 0.85rem; opacity: 0.7;">Data de criação: 14 de Março de 2026</span></p>
