@@ -65,10 +65,9 @@ export function Navbar() {
 
             {/* CV Button */}
             <motion.a
-              href="https://storage.cloud.google.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
+              href="https://storage.googleapis.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              download="Currículo - Natan Ferreira.pdf"
               initial={{ opacity: 0, y: -20 }}
               animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -155,10 +154,9 @@ export function Navbar() {
                 ))}
                 {/* Mobile CV Link */}
                 <motion.a
-                  href="https://storage.cloud.google.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
+                  href="https://storage.googleapis.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  download="Currículo - Natan Ferreira.pdf"
                   onClick={() => setIsOpen(false)}
                   variants={{
                     closed: { opacity: 0, x: -10 },
