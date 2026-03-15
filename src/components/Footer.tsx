@@ -30,6 +30,9 @@ export function Footer() {
           <p className="text-sm text-white/50">
             {t('footer.rights')}
           </p>
+          <p className="text-xs text-white/30 mt-1">
+            {t('footer.signature')}
+          </p>
         </div>
 
         <div className="flex flex-col items-center gap-6 md:items-end">

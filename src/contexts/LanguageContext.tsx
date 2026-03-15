@@ -133,6 +133,7 @@ const translations: Translations = {
 
   // Footer
   'footer.rights': { pt: '© 2025 Natan Ferreira. Todos os direitos reservados.', en: '© 2025 Natan Ferreira. All rights reserved.' },
+  'footer.signature': { pt: 'Design By Natan Ferreira ©', en: 'Design By Natan Ferreira ©' },
 };
 
 interface LanguageContextType {
