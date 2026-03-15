@@ -117,10 +117,20 @@ export function Contact() {
               </div>
 
               <div className="mt-4 flex items-center gap-4">
-                <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white">
+                <a 
+                  href="https://www.instagram.com/naph.n/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white"
+                >
                   <Instagram size={20} strokeWidth={1.25} />
                 </a>
-                <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white">
+                <a 
+                  href="https://linkedin.com/in/natan-ferreira" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white"
+                >
                   <Linkedin size={20} strokeWidth={1.25} />
                 </a>
                 <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white">

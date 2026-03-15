@@ -48,10 +48,20 @@ export function Footer() {
           </div>
           
           <div className="flex items-center gap-4">
-            <a href="#" className="text-white/50 hover:text-blue-500 transition-colors">
+            <a 
+              href="https://www.instagram.com/naph.n/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/50 hover:text-blue-500 transition-colors"
+            >
               <Instagram size={20} />
             </a>
-            <a href="#" className="text-white/50 hover:text-blue-500 transition-colors">
+            <a 
+              href="https://linkedin.com/in/natan-ferreira" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/50 hover:text-blue-500 transition-colors"
+            >
               <Linkedin size={20} />
             </a>
             <a href="#" className="text-white/50 hover:text-blue-500 transition-colors">
