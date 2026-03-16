@@ -134,7 +134,7 @@ const translations: Translations = {
   'contact.form.success': { pt: 'Mensagem enviada com sucesso', en: 'Message sent successfully' },
 
   // Footer
-  'footer.rights': { pt: '© 2025 Natan Ferreira. Todos os direitos reservados.', en: '© 2025 Natan Ferreira. All rights reserved.' },
+  'footer.rights': { pt: '© 2026 Natan Ferreira. Todos os direitos reservados.', en: '© 2026 Natan Ferreira. All rights reserved.' },
   'footer.signature': { pt: 'Design By Natan Ferreira ©', en: 'Design By Natan Ferreira ©' },
 };
 
