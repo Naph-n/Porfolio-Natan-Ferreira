@@ -42,11 +42,12 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
     <AnimatePresence mode="wait">
       <motion.span
         key={text} // Re-animate when text changes (language switch)
-        className={`${className} inline-flex flex-wrap`}
+        className={`${className} inline-flex flex-wrap notranslate`}
         variants={container}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
+        translate="no"
       >
         {words.map((word, wordIndex) => (
           <span key={`${text}-word-${wordIndex}`} className="inline-block whitespace-nowrap">

@@ -71,7 +71,7 @@ export function Navbar() {
               initial={{ opacity: 0, y: -20 }}
               animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black lg:px-5 lg:py-2"
+              className="hidden lg:flex rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black lg:px-5 lg:py-2"
             >
               {t('nav.resume')}
             </motion.a>
