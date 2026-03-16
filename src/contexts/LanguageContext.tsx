@@ -59,6 +59,8 @@ const translations: Translations = {
   'services.s5.desc': { pt: 'Pesquisa, estruturação e prototipação de experiências digitais focadas em clareza, fluxo eficiente e usabilidade.', en: 'Research, structuring, and prototyping of digital experiences focused on clarity, efficient flow, and usability.' },
   'services.s6.title': { pt: 'Motion Design', en: 'Motion Design' },
   'services.s6.desc': { pt: 'Animações que comunicam com ritmo e intenção. Criação de movimentos, transições e composições visuais.', en: 'Animations that communicate with rhythm and intention. Creation of movements, transitions, and visual compositions.' },
+  'services.s7.title': { pt: 'Web Design', en: 'Web Design' },
+  'services.s7.desc': { pt: 'Criação de websites modernos e responsivos, focados em performance, estética e na melhor experiência.', en: 'Creation of modern and responsive websites, focused on performance, aesthetics, and the best experience.' },
 
   // Portfolio
   'portfolio.badge': { pt: 'Portfólio', en: 'Portfolio' },

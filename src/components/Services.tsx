@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { Plus, Minus, MonitorPlay, Camera, PenTool, Layout, Layers, Video } from "lucide-react";
+import { Plus, Minus, MonitorPlay, Camera, PenTool, Layout, Layers, Video, Monitor } from "lucide-react";
 import { AnimatedText } from "./ui/AnimatedText";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLoading } from "../contexts/LoadingContext";
@@ -45,6 +45,12 @@ export function Services() {
       title: t('services.s6.title'),
       description: t('services.s6.desc'),
       image: "https://framerusercontent.com/images/xmWxmcd8Pgc7uUqSygvL6PRYJY.gif?width=818&height=1024"
+    },
+    {
+      icon: <Monitor className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
+      title: t('services.s7.title'),
+      description: t('services.s7.desc'),
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=819&h=1024"
     },
   ];
 
