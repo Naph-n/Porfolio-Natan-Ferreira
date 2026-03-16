@@ -50,7 +50,7 @@ export function Services() {
       icon: <Monitor className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
       title: t('services.s7.title'),
       description: t('services.s7.desc'),
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=819&h=1024"
+      image: "https://framerusercontent.com/images/WBfnCJZCa6fqgbKw26k7qJi04c.jpg?width=2500&height=1667"
     },
   ];
 

@@ -27,7 +27,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/80"
+            className="mb-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-white/90"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
@@ -71,7 +71,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 1.0 }}
-          className="relative mx-auto w-full max-w-md lg:max-w-[540px] hidden lg:block will-change-transform"
+          className="relative mx-auto w-full max-w-md lg:max-w-[640px] hidden lg:block will-change-transform"
         >
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">
             <img
