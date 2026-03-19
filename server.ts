@@ -16,8 +16,18 @@ async function startServer() {
   app.post("/api/enviar-contato", async (req, res) => {
     const { name, email, phone, message } = req.body;
 
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: "Campos obrigatórios ausentes." });
+    // Validação básica e limpeza de dados
+    const cleanEmail = String(email || '').trim();
+    const cleanName = String(name || '').trim();
+
+    if (!cleanName || !cleanEmail || !message) {
+      return res.status(400).json({ error: "Campos obrigatórios ausentes ou inválidos." });
+    }
+
+    // Regex simples para validar formato de e-mail antes de enviar ao Resend
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      return res.status(400).json({ error: "E-mail inválido.", message: "O endereço de e-mail fornecido não é válido." });
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
@@ -39,13 +49,13 @@ async function startServer() {
       const { data, error } = await resend.emails.send({
         from: `Natan Ferreira <${fromEmail}>`,
         to: 'natan.furtado@outlook.com',
-        replyTo: email as string,
-        subject: `Novo contato: ${name}`,
+        replyTo: `${cleanName} <${cleanEmail}>`,
+        subject: `Novo contato: ${cleanName}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
             <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">Novo contato recebido pelo Portfolio</h2>
-            <p style="margin-top: 20px;"><strong>Nome:</strong> ${String(name)}</p>
-            <p><strong>E-mail:</strong> ${String(email)}</p>
+            <p style="margin-top: 20px;"><strong>Nome:</strong> ${cleanName}</p>
+            <p><strong>E-mail:</strong> ${cleanEmail}</p>
             <p><strong>Telefone:</strong> ${phone ? String(phone) : 'Não informado'}</p>
             <div style="margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
               <p><strong>Mensagem:</strong></p>
