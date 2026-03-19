@@ -76,7 +76,7 @@ export function Hero() {
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">
             <img
               src="https://framerusercontent.com/images/aCi97T93KLAF5XkrpugqlKPKpc.png?scale-down-to=2048&width=4096&height=4096"
-              alt="Natan"
+              alt="Natan Ferreira - Creative Designer & Communication Professional"
               className="h-full w-full object-cover"
               referrerPolicy="no-referrer"
               fetchPriority="high"

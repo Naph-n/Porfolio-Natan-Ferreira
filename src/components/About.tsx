@@ -101,7 +101,7 @@ export function About() {
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.3 }}
                 className="absolute inset-0 h-full w-full object-cover"
-                alt="Gallery"
+                alt={`Natan Ferreira Portfolio Gallery Image ${currentImageIndex + 1}`}
                 referrerPolicy="no-referrer"
               />
             </AnimatePresence>
@@ -127,7 +127,7 @@ export function About() {
                 key={`a-${idx}`}
                 className="h-80 md:h-[28rem] lg:h-[36rem] aspect-[4/5] shrink-0 overflow-hidden bg-gray-100"
               >
-                <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                <img src={src} alt={`Natan Ferreira Portfolio Work ${idx + 1}`} className="h-full w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
               </div>
             ))}
           </div>
@@ -137,7 +137,7 @@ export function About() {
                 key={`b-${idx}`}
                 className="h-80 md:h-[28rem] lg:h-[36rem] aspect-[4/5] shrink-0 overflow-hidden bg-gray-100"
               >
-                <img src={src} alt="Gallery" className="h-full w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                <img src={src} alt={`Natan Ferreira Portfolio Work ${idx + 1}`} className="h-full w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
               </div>
             ))}
           </div>

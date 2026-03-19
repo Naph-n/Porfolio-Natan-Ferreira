@@ -87,7 +87,7 @@ export function Services() {
               <motion.img 
                 key={openIndex ?? 'default'}
                 src={services[openIndex ?? 0].image} 
-                alt="Service" 
+                alt={`Service Image: ${services[openIndex ?? 0].title}`} 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
