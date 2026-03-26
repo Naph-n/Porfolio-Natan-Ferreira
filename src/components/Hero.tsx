@@ -36,7 +36,7 @@ export function Hero() {
             {t('hero.badge')}
           </motion.div>
 
-          <h1 className="font-display text-4xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
+          <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
             <AnimatedText text={t('hero.title')} delay={1.0} />
           </h1>
 

@@ -67,7 +67,7 @@ export function Services() {
           <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
             {t('services.badge')}
           </span>
-          <h3 className="font-display text-3xl font-normal tracking-tight sm:text-5xl">
+          <h3 className="font-display text-5xl font-normal tracking-tight sm:text-5xl">
             <AnimatedText text={t('services.title')} />
           </h3>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">

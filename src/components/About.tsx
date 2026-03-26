@@ -66,7 +66,7 @@ export function About() {
             <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
               {t('about.badge')}
             </span>
-            <h3 className="font-display text-3xl font-normal tracking-tight sm:text-5xl leading-tight">
+            <h3 className="font-display text-5xl font-normal tracking-tight sm:text-5xl leading-tight">
               <AnimatedText text={t('about.title1')} delay={0.1} /><br />
               <AnimatedText text={t('about.title2')} delay={0.3} /><br />
               <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} /></span>

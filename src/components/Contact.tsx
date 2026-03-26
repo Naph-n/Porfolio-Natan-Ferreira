@@ -76,7 +76,7 @@ export function Contact() {
             <span className="mb-6 w-fit rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white">
               {t('contact.badge')}
             </span>
-            <h3 className="mb-6 font-display text-3xl font-normal tracking-tight sm:text-6xl">
+            <h3 className="mb-6 font-display text-5xl font-normal tracking-tight sm:text-6xl">
               <AnimatedText text={t('contact.title')} />
             </h3>
             <p className="mb-12 max-w-md text-lg text-white/70">
