@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import { Mail, Phone, MapPin, Instagram, Linkedin, Dribbble, Loader2, CheckCircle2 } from "lucide-react";
 import { InteractiveButton } from "./ui/InteractiveButton";
 import { AnimatedText } from "./ui/AnimatedText";
+import { MagneticButton } from "./ui/MagneticButton";
+import { MagneticText } from "./ui/MagneticText";
 import { Footer } from "./Footer";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLoading } from "../contexts/LoadingContext";
@@ -74,7 +76,7 @@ export function Contact() {
             <span className="mb-6 w-fit rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white">
               {t('contact.badge')}
             </span>
-            <h3 className="mb-6 font-display text-5xl font-normal tracking-tight sm:text-6xl">
+            <h3 className="mb-6 font-display text-3xl font-normal tracking-tight sm:text-6xl">
               <AnimatedText text={t('contact.title')} />
             </h3>
             <p className="mb-12 max-w-md text-lg text-white/70">
@@ -98,9 +100,9 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.email')}</h4>
-                  <a href="mailto:natan.furtado@outlook.com" className="text-white/60 hover:text-blue-500 transition-colors">
+                  <MagneticText href="mailto:natan.furtado@outlook.com" className="text-white/60 hover:text-blue-500">
                     natan.furtado@outlook.com
-                  </a>
+                  </MagneticText>
                 </div>
               </div>
 
@@ -110,32 +112,46 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.phone')}</h4>
-                  <a href="tel:65999279386" className="text-white/60 hover:text-blue-500 transition-colors">
+                  <MagneticText href="tel:65999279386" className="text-white/60 hover:text-blue-500">
                     65 999279386
-                  </a>
+                  </MagneticText>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-4">
-                <a 
-                  href="https://www.instagram.com/naph.n/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white"
+              <div className="mt-4 flex items-center gap-2">
+                <MagneticButton
+                  as="a"
+                  href="https://www.instagram.com/naph.n/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="!h-12 !w-12 text-white/60 hover:text-white"
+                  idleColor="rgba(255, 255, 255, 0.05)"
+                  activeColor="#2563eb"
                 >
                   <Instagram size={20} strokeWidth={1.25} />
-                </a>
-                <a 
-                  href="https://linkedin.com/in/natan-ferreira" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white"
+                </MagneticButton>
+
+                <MagneticButton
+                  as="a"
+                  href="https://linkedin.com/in/natan-ferreira"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="!h-12 !w-12 text-white/60 hover:text-white"
+                  idleColor="rgba(255, 255, 255, 0.05)"
+                  activeColor="#2563eb"
                 >
                   <Linkedin size={20} strokeWidth={1.25} />
-                </a>
-                <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-blue-600 hover:text-white">
+                </MagneticButton>
+
+                <MagneticButton
+                  as="a"
+                  href="#"
+                  className="!h-12 !w-12 text-white/60 hover:text-white"
+                  idleColor="rgba(255, 255, 255, 0.05)"
+                  activeColor="#2563eb"
+                >
                   <Dribbble size={20} strokeWidth={1.25} />
-                </a>
+                </MagneticButton>
               </div>
             </div>
           </motion.div>
@@ -146,9 +162,9 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex h-full flex-col rounded-[2rem] bg-[#111] p-8 md:p-12"
+            className="flex h-full flex-col rounded-[2rem] bg-[#111] p-8 md:p-12 overflow-visible"
           >
-            <form className="flex h-full flex-col" onSubmit={handleSubmit}>
+            <form className="flex h-full flex-col overflow-visible" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div className="flex flex-col gap-2">
@@ -203,7 +219,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="mt-auto pt-8">
+              <div className="mt-auto pt-8 w-full overflow-visible">
                 {errorMsg && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
@@ -232,6 +248,7 @@ export function Contact() {
                   <InteractiveButton
                     type="submit"
                     disabled={isSubmitting}
+                    isMagnetic={true}
                     className={`w-full rounded-xl bg-blue-600 pl-8 pr-3 py-3 font-normal ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     circleClassName="right-3 h-10 w-10 bg-white"
                   >

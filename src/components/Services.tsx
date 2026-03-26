@@ -55,7 +55,7 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="bg-[#f8f9fa] py-24 px-6 text-black">
+    <section id="services" className="bg-[#f8f9fa] pt-32 pb-32 md:pb-48 lg:pb-64 px-6 text-black">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +67,7 @@ export function Services() {
           <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
             {t('services.badge')}
           </span>
-          <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl">
+          <h3 className="font-display text-3xl font-normal tracking-tight sm:text-5xl">
             <AnimatedText text={t('services.title')} />
           </h3>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">

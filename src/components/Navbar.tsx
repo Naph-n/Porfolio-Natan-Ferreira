@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLoading } from "../contexts/LoadingContext";
+import { MagneticText } from "./ui/MagneticText";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,35 +32,39 @@ export function Navbar() {
     <nav className={`fixed lg:absolute top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${scrolled ? 'bg-[#0a0a0a]/80 backdrop-blur-md py-4 shadow-lg lg:bg-transparent lg:backdrop-blur-none lg:shadow-none lg:py-6' : 'bg-transparent py-6'}`}>
       <div className="mx-auto max-w-7xl">
         <div className="flex items-center justify-between">
-          <motion.a 
-            href="#" 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.017 30.976" className="h-7 w-auto fill-white">
-              <g>
-                <path d="M 43.017 0.09 L 34.007 0.09 C 31.696 0.09 29.821 1.818 29.821 3.949 L 29.821 30.976 L 35.962 30.976 L 35.962 7.171 C 35.962 6.387 36.651 5.751 37.502 5.751 L 43.017 5.751 L 43.017 0.09 Z" />
-                <path d="M 25.41 7.196 L 30.473 7.196 L 30.473 12.837 L 25.41 12.837 Z M 22.472 3.382 C 22.472 1.514 20.829 0 18.804 0 L 3.669 0 C 1.643 0 0 1.514 0 3.382 L 0 30.886 L 6.14 30.886 L 6.14 6.539 C 6.14 6.054 6.567 5.661 7.093 5.661 L 15.379 5.661 C 15.905 5.661 16.332 6.054 16.332 6.539 L 16.332 30.886 L 22.472 30.886 Z" />
-              </g>
-            </svg>
-          </motion.a>
+            <MagneticText href="#" className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.017 30.976" className="h-7 w-auto fill-white">
+                <g>
+                  <path d="M 43.017 0.09 L 34.007 0.09 C 31.696 0.09 29.821 1.818 29.821 3.949 L 29.821 30.976 L 35.962 30.976 L 35.962 7.171 C 35.962 6.387 36.651 5.751 37.502 5.751 L 43.017 5.751 L 43.017 0.09 Z" />
+                  <path d="M 25.41 7.196 L 30.473 7.196 L 30.473 12.837 L 25.41 12.837 Z M 22.472 3.382 C 22.472 1.514 20.829 0 18.804 0 L 3.669 0 C 1.643 0 0 1.514 0 3.382 L 0 30.886 L 6.14 30.886 L 6.14 6.539 C 6.14 6.054 6.567 5.661 7.093 5.661 L 15.379 5.661 C 15.905 5.661 16.332 6.054 16.332 6.539 L 16.332 30.886 L 22.472 30.886 Z" />
+                </g>
+              </svg>
+            </MagneticText>
+          </motion.div>
 
-          <div className="flex items-center gap-4 lg:gap-8">
+          <div className="flex items-center gap-4 lg:gap-4">
             {/* Desktop Nav */}
-            <div className="hidden items-center gap-8 lg:flex">
+            <div className="hidden items-center gap-2 lg:flex">
               {links.map((link, index) => (
-                <motion.a
+                <motion.div
                   key={link.name}
-                  href={link.href}
                   initial={{ opacity: 0, y: -20 }}
                   animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="text-sm font-medium text-white/80 transition-colors hover:text-white"
                 >
-                  {link.name}
-                </motion.a>
+                  <MagneticText
+                    href={link.href}
+                    className="group relative inline-flex flex-col items-center text-lg font-normal text-white/80 transition-colors hover:text-white"
+                  >
+                    <span>{link.name}</span>
+                    <span className="absolute -bottom-2 h-1.5 w-1.5 scale-0 rounded-full bg-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
+                  </MagneticText>
+                </motion.div>
               ))}
             </div>
 
@@ -71,7 +76,7 @@ export function Navbar() {
               initial={{ opacity: 0, y: -20 }}
               animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="hidden lg:flex rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black lg:px-5 lg:py-2"
+              className="hidden lg:flex rounded-full border border-white/20 px-4 py-1.5 text-lg font-normal text-white transition-colors hover:bg-white hover:text-black lg:px-6 lg:py-2"
             >
               {t('nav.resume')}
             </motion.a>

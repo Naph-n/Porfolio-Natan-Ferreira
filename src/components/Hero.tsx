@@ -9,7 +9,7 @@ export function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-20 text-white">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-32 md:pb-48 lg:pb-64 text-white">
       {/* Background Image with Overlay - Only visible on mobile/tablet */}
       <div 
         className="absolute inset-0 z-0 lg:hidden"
@@ -36,7 +36,7 @@ export function Hero() {
             {t('hero.badge')}
           </motion.div>
 
-          <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
+          <h1 className="font-display text-4xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
             <AnimatedText text={t('hero.title')} delay={1.0} />
           </h1>
 
@@ -58,6 +58,7 @@ export function Hero() {
             <InteractiveButton
               as="a"
               href="#contact"
+              isMagnetic={true}
               className="rounded-full bg-blue-600 pl-8 pr-3 py-3 text-base font-medium"
               circleClassName="right-3 h-10 w-10 bg-white"
             >

@@ -117,7 +117,7 @@ export function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="bg-white py-24 text-black overflow-hidden">
+    <section id="testimonials" className="bg-white pt-32 pb-32 md:pb-48 lg:pb-64 text-black overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -129,7 +129,7 @@ export function Testimonials() {
           <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
             {t('testimonials.badge')}
           </span>
-          <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl flex justify-center text-center">
+          <h3 className="font-display text-3xl font-normal tracking-tight sm:text-6xl flex justify-center text-center">
             <AnimatedText text={t('testimonials.title')} className="justify-center" />
           </h3>
           <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600">

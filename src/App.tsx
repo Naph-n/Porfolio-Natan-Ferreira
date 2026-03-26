@@ -17,6 +17,7 @@ import { CustomScrollbar } from "./components/CustomScrollbar";
 import { LanguageToggle } from "./components/LanguageToggle";
 import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
+import { Curve } from "./components/ui/Curve";
 
 import { useLoading } from "./contexts/LoadingContext";
 
@@ -58,11 +59,37 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
+            
+            {/* Hero to About */}
+            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
+              <Curve color="white" />
+            </div>
             <About />
+
+            {/* About to Services */}
+            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
+              <Curve color="#f8f9fa" />
+            </div>
             <Services />
+
+            {/* Services to Portfolio */}
+            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
+              <Curve color="#111" />
+            </div>
             <Portfolio />
+
+            {/* Portfolio to Testimonials */}
+            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
+              <Curve color="white" />
+            </div>
             <Testimonials />
+
+            {/* Testimonials to FAQ */}
+            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
+              <Curve color="#f8f9fa" />
+            </div>
             <FAQ />
+            
             <Contact />
           </main>
         </div>

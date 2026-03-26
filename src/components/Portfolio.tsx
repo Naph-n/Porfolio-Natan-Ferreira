@@ -24,7 +24,7 @@ export function Portfolio() {
   ];
 
   return (
-    <section id="our-work" className="bg-[#111] py-24 px-6 text-white">
+    <section id="our-work" className="bg-[#111] pt-32 pb-32 md:pb-48 lg:pb-64 px-6 text-white">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ export function Portfolio() {
           <span className="inline-block rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white mb-6">
             {t('portfolio.badge')}
           </span>
-          <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
+          <h3 className="font-display text-3xl font-normal tracking-tight sm:text-6xl">
             <AnimatedText text={t('portfolio.title1')} delay={0.1} /><br />
             <AnimatedText text={t('portfolio.title2')} delay={0.3} /><span className="text-blue-500"><AnimatedText text={t('portfolio.title3')} delay={0.4} /></span>
           </h3>

@@ -54,7 +54,7 @@ export function About() {
   }, [galleryImages.length]);
 
   return (
-    <section id="about" className="bg-white py-24 text-black overflow-hidden">
+    <section id="about" className="bg-white pt-32 pb-32 md:pb-48 lg:pb-64 text-black overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24 mb-12">
           <motion.div
@@ -66,7 +66,7 @@ export function About() {
             <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
               {t('about.badge')}
             </span>
-            <h3 className="font-display text-4xl font-normal tracking-tight sm:text-5xl leading-tight">
+            <h3 className="font-display text-3xl font-normal tracking-tight sm:text-5xl leading-tight">
               <AnimatedText text={t('about.title1')} delay={0.1} /><br />
               <AnimatedText text={t('about.title2')} delay={0.3} /><br />
               <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} /></span>

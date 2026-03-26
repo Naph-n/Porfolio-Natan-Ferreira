@@ -30,7 +30,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faqs" className="bg-[#f8f9fa] py-24 px-6 text-black">
+    <section id="faqs" className="bg-[#f8f9fa] pt-32 pb-32 md:pb-48 lg:pb-64 px-6 text-black">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export function FAQ() {
           <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
             {t('faq.badge')}
           </span>
-          <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
+          <h3 className="font-display text-3xl font-normal tracking-tight sm:text-6xl">
             <AnimatedText text={t('faq.title1')} /><br />
             <AnimatedText text={t('faq.title2')} />
           </h3>
