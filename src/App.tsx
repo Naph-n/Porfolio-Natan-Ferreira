@@ -60,34 +60,18 @@ export default function App() {
           <main>
             <Hero />
             
-            {/* Hero to About */}
+            {/* Hero to About - Mantendo a primeira transição arredondada */}
             <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
               <Curve color="white" />
             </div>
             <About />
 
-            {/* About to Services */}
-            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
-              <Curve color="#f8f9fa" />
-            </div>
             <Services />
 
-            {/* Services to Portfolio */}
-            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
-              <Curve color="#111" />
-            </div>
             <Portfolio />
 
-            {/* Portfolio to Testimonials */}
-            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
-              <Curve color="white" />
-            </div>
             <Testimonials />
 
-            {/* Testimonials to FAQ */}
-            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
-              <Curve color="#f8f9fa" />
-            </div>
             <FAQ />
             
             <Contact />

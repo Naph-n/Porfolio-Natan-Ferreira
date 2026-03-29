@@ -38,7 +38,17 @@ export function Portfolio() {
           </span>
           <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
             <AnimatedText text={t('portfolio.title1')} delay={0.1} /><br />
-            <AnimatedText text={t('portfolio.title2')} delay={0.3} /><span className="text-blue-500"><AnimatedText text={t('portfolio.title3')} delay={0.4} /></span>
+            <span className="inline-block whitespace-nowrap">
+              <AnimatedText text={t('portfolio.title2')} delay={0.3} />
+              <span className="text-blue-500">
+                <AnimatedText text={t('portfolio.title3')} delay={0.4} />
+              </span>
+            </span>
+            <span className="text-blue-500">
+              <br className="sm:hidden" />
+              <span className="hidden sm:inline">&nbsp;</span>
+              <AnimatedText text={t('portfolio.title4')} delay={0.5} />
+            </span>
           </h3>
         </motion.div>
 
