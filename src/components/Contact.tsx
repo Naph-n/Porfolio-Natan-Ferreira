@@ -100,9 +100,9 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.email')}</h4>
-                  <MagneticText href="mailto:natan.furtado@outlook.com" className="text-white/60 hover:text-blue-500">
+                  <a href="mailto:natan.furtado@outlook.com" className="text-white/60">
                     natan.furtado@outlook.com
-                  </MagneticText>
+                  </a>
                 </div>
               </div>
 
@@ -112,9 +112,9 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.phone')}</h4>
-                  <MagneticText href="tel:65999279386" className="text-white/60 hover:text-blue-500">
+                  <a href="tel:65999279386" className="text-white/60">
                     65 999279386
-                  </MagneticText>
+                  </a>
                 </div>
               </div>
 
