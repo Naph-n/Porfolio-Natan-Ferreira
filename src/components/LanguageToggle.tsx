@@ -16,6 +16,7 @@ export function LanguageToggle() {
         className="!h-12 !w-12 text-sm font-bold text-white"
         idleColor="#1a1a1a" // Dark
         activeColor="#2563eb" // Blue
+        shrinkIdleOnHover={language === 'pt'}
       >
         {language === 'pt' ? 'EN' : 'PT'}
       </MagneticButton>

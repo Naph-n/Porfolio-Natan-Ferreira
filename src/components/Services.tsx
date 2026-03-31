@@ -41,13 +41,13 @@ export function Services() {
       image: "https://framerusercontent.com/images/v7EZjAXKaikiVYcxU3YVRrtjs.jpg?width=819&height=1024"
     },
     {
-      icon: <MonitorPlay className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
+      icon: <MonitorPlay className="h-8 w-8 text-blue-400" strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />,
       title: t('services.s6.title'),
       description: t('services.s6.desc'),
       image: "https://framerusercontent.com/images/xmWxmcd8Pgc7uUqSygvL6PRYJY.gif?width=818&height=1024"
     },
     {
-      icon: <Monitor className="h-8 w-8 text-blue-600" strokeWidth={1.5} />,
+      icon: <Monitor className="h-8 w-8 text-blue-400" strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />,
       title: t('services.s7.title'),
       description: t('services.s7.desc'),
       image: "https://framerusercontent.com/images/WBfnCJZCa6fqgbKw26k7qJi04c.jpg?width=2500&height=1667"
@@ -121,8 +121,19 @@ export function Services() {
                       {service.title}
                     </span>
                   </div>
-                  <span className="text-gray-400">
-                    {openIndex === index ? <Minus size={20} strokeWidth={1.5} /> : <Plus size={20} strokeWidth={1.5} />}
+                  <span className="text-blue-600">
+                    <div className="relative h-4 w-4">
+                      <motion.div
+                        className="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 bg-current"
+                        animate={{ rotate: openIndex === index ? 0 : 90 }}
+                        transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                      />
+                      <motion.div
+                        className="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 bg-current"
+                        animate={{ rotate: 0 }}
+                        transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                      />
+                    </div>
                   </span>
                 </button>
                 <AnimatePresence initial={false}>
@@ -131,7 +142,7 @@ export function Services() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                       className="overflow-hidden"
                     >
                       <p className="pb-6 pl-14 text-gray-600">

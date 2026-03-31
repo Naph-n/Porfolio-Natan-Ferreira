@@ -47,6 +47,7 @@ export function BackToTop() {
             activeColor="#2563eb" // Blue
             textColor="white"
             activeTextColor="white"
+            shrinkIdleOnHover={true}
           >
             <ArrowUp size={20} strokeWidth={2.5} />
           </MagneticButton>

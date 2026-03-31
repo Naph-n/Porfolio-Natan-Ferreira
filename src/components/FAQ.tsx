@@ -63,22 +63,33 @@ export function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-gray-50 sm:p-8"
+                className="flex w-full items-center justify-between p-6 text-left sm:p-8"
               >
                 <span className="font-display text-lg font-normal text-black sm:text-xl">
                   {faq.question}
                 </span>
-                <span className="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-blue-600 transition-transform">
-                  {openIndex === index ? <Minus size={20} /> : <Plus size={20} />}
+                <span className="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-blue-600">
+                  <div className="relative h-4 w-4">
+                    <motion.div
+                      className="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 bg-current"
+                      animate={{ rotate: openIndex === index ? 0 : 90 }}
+                      transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                    />
+                    <motion.div
+                      className="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 bg-current"
+                      animate={{ rotate: 0 }}
+                      transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                    />
+                  </div>
                 </span>
               </button>
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                   >
                     <div className="px-6 pb-6 pt-0 text-base text-gray-600 sm:px-8 sm:pb-8">
                       {faq.answer}

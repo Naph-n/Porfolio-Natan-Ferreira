@@ -95,8 +95,8 @@ export function Contact() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-600/10 text-blue-500">
-                  <Mail size={24} strokeWidth={1.25} />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-600/10 text-blue-400">
+                  <Mail size={24} strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />
                 </div>
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.email')}</h4>
@@ -107,8 +107,8 @@ export function Contact() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-600/10 text-blue-500">
-                  <Phone size={24} strokeWidth={1.25} />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-600/10 text-blue-400">
+                  <Phone size={24} strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />
                 </div>
                 <div>
                   <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.phone')}</h4>

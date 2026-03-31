@@ -15,6 +15,7 @@ interface MagneticButtonProps {
   activeTextColor?: string;
   ariaLabel?: string;
   border?: boolean;
+  shrinkIdleOnHover?: boolean;
 }
 
 export function MagneticButton({ 
@@ -30,7 +31,8 @@ export function MagneticButton({
   textColor = "white",
   activeTextColor = "white",
   ariaLabel,
-  border = false
+  border = false,
+  shrinkIdleOnHover = false
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -42,7 +44,7 @@ export function MagneticButton({
   // Content parallax values
   const contentX = useMotionValue(0);
   const contentY = useMotionValue(0);
-
+ 
   // Smooth springs with Dennis-style "weight"
   const springConfig = { damping: 20, stiffness: 150, mass: 0.6 };
   const springX = useSpring(x, springConfig);
@@ -99,9 +101,26 @@ export function MagneticButton({
         className={`group relative flex h-16 w-16 cursor-pointer items-center justify-center overflow-hidden rounded-full transition-transform duration-300 hover:scale-105 ${border ? 'border border-white/20' : ''} ${className}`}
       >
         {/* Idle Background */}
-        <div 
+        <motion.div 
           className="absolute inset-0 transition-colors duration-500" 
-          style={{ backgroundColor: idleColor }}
+          style={{ backgroundColor: idleColor, transformOrigin: 'top' }}
+          animate={{ 
+            scale: isHovered && shrinkIdleOnHover ? 0.92 : 1,
+            scaleY: isHovered && shrinkIdleOnHover ? 0 : 1,
+            opacity: isHovered && shrinkIdleOnHover ? 0 : 1
+          }}
+          transition={{ 
+            scale: { duration: 0.2 },
+            scaleY: { 
+              duration: 0.25, 
+              ease: [0.76, 0, 0.24, 1],
+              delay: isHovered ? 0.3 : 0 
+            },
+            opacity: { 
+              duration: 0.1, 
+              delay: isHovered ? 0.4 : 0 
+            }
+          }}
         />
         
         {/* Dennis Snellenberg "Liquid" Fill Effect */}
@@ -110,7 +129,7 @@ export function MagneticButton({
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: "0%" }}
-              exit={{ y: "-100%" }}
+              exit={{ y: "100%" }}
               transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
               className="absolute inset-0 rounded-full"
               style={{ backgroundColor: activeColor }}
