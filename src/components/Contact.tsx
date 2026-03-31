@@ -89,8 +89,8 @@ export function Contact() {
                   <MapPin size={24} strokeWidth={1.25} />
                 </div>
                 <div>
-                  <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.office')}</h4>
-                  <p className="text-white/60">Mato Grosso - Brasil</p>
+                  <h4 className="mb-1 font-display text-lg font-normal text-white">{t('contact.office')}</h4>
+                  <p className="text-lg text-white/60">Mato Grosso - Brasil</p>
                 </div>
               </div>
 
@@ -99,8 +99,8 @@ export function Contact() {
                   <Mail size={24} strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />
                 </div>
                 <div>
-                  <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.email')}</h4>
-                  <a href="mailto:natan.furtado@outlook.com" className="text-white/60">
+                  <h4 className="mb-1 font-display text-lg font-normal text-white">{t('contact.email')}</h4>
+                  <a href="mailto:natan.furtado@outlook.com" className="text-lg text-white/60 hover:text-white transition-colors">
                     natan.furtado@outlook.com
                   </a>
                 </div>
@@ -111,8 +111,8 @@ export function Contact() {
                   <Phone size={24} strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />
                 </div>
                 <div>
-                  <h4 className="mb-2 font-display text-xl font-normal text-white">{t('contact.phone')}</h4>
-                  <a href="tel:65999279386" className="text-white/60">
+                  <h4 className="mb-1 font-display text-lg font-normal text-white">{t('contact.phone')}</h4>
+                  <a href="tel:65999279386" className="text-lg text-white/60 hover:text-white transition-colors">
                     65 999279386
                   </a>
                 </div>

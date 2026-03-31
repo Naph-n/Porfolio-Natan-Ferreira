@@ -99,8 +99,8 @@ const translations: Translations = {
 
   // FAQ
   'faq.badge': { pt: 'FAQs', en: 'FAQs' },
-  'faq.title1': { pt: 'Respondendo às', en: 'Answering' },
-  'faq.title2': { pt: 'suas perguntas', en: 'your questions' },
+  'faq.title1': { pt: 'Respondendo', en: 'Answering' },
+  'faq.title2': { pt: 'às suas perguntas', en: 'your questions' },
   'faq.subtitle': { pt: 'Tem mais perguntas? Envie-nos sua dúvida abaixo.', en: 'Have more questions? Send us your doubt below.' },
   
   'faq.q1.q': { pt: 'Quais serviços você oferece exatamente?', en: 'What services do you offer exactly?' },
