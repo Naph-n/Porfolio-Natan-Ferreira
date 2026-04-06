@@ -60,8 +60,8 @@ export default function App() {
           <main>
             <Hero />
             
-            {/* Hero to About - Mantendo a primeira transição arredondada */}
-            <div className="relative z-20 -mt-[60px] md:-mt-[80px] lg:-mt-[100px]">
+            {/* Hero to About - Mantendo a primeira transição arredondada apenas no desktop */}
+            <div className="hidden lg:block relative z-20 lg:-mt-[100px]">
               <Curve color="white" />
             </div>
             <About />
