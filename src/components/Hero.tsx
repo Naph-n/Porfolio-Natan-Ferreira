@@ -22,7 +22,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0 bg-black/80 lg:hidden" />
 
       <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16 items-center relative z-10">
-        <div className="relative z-10 max-w-3xl">
+        <div className="relative z-10 max-w-3xl text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export function Hero() {
             {t('hero.badge')}
           </motion.div>
 
-          <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none">
+          <h1 className="font-display text-5xl font-normal tracking-tight sm:text-6xl md:text-7xl text-balance md:max-w-[15ch] lg:max-w-none mx-auto lg:mx-0">
             <AnimatedText text={t('hero.title')} delay={1.0} />
           </h1>
 
@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.2 }}
-            className="mt-6 max-w-lg text-lg text-white/70"
+            className="mt-6 max-w-lg text-lg text-white/70 mx-auto lg:mx-0"
           >
             {t('hero.subtitle')}
           </motion.p>
@@ -53,12 +53,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.4 }}
-            className="mt-10"
+            className="mt-10 flex justify-center lg:justify-start"
           >
             <InteractiveButton
               as="a"
               href="#contact"
-              isMagnetic={true}
               className="rounded-full bg-blue-600 pl-8 pr-3 py-3 text-base font-medium"
               circleClassName="right-3 h-10 w-10 bg-white"
             >

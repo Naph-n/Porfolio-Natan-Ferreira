@@ -248,7 +248,6 @@ export function Contact() {
                   <InteractiveButton
                     type="submit"
                     disabled={isSubmitting}
-                    isMagnetic={true}
                     className={`w-full rounded-xl bg-blue-600 pl-8 pr-3 py-3 font-normal ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     circleClassName="right-3 h-10 w-10 bg-white"
                   >
