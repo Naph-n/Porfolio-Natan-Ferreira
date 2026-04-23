@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { InteractiveButton } from "./ui/InteractiveButton";
 import { AnimatedText } from "./ui/AnimatedText";
@@ -7,16 +8,26 @@ import { useLoading } from "../contexts/LoadingContext";
 
 export function Hero() {
   const { t } = useLanguage();
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-32 md:pb-48 lg:pb-64 text-white">
+    <section ref={containerRef} className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-32 md:pb-48 lg:pb-64 text-white">
       {/* Background Image with Overlay - Only visible on mobile/tablet */}
-      <div 
+      <motion.div 
         className="absolute inset-0 z-0 lg:hidden"
         style={{
           backgroundImage: 'url("https://framerusercontent.com/images/aCi97T93KLAF5XkrpugqlKPKpc.png?scale-down-to=2048&width=4096&height=4096")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          scale: scale,
+          opacity: opacity
         }}
       />
       <div className="absolute inset-0 z-0 bg-black/80 lg:hidden" />
@@ -71,6 +82,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 1.0 }}
+          style={{ scale: scale }}
           className="relative mx-auto w-full max-w-md lg:max-w-[640px] hidden lg:block will-change-transform"
         >
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white/5">
