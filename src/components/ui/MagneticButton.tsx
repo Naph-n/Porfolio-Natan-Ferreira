@@ -97,6 +97,8 @@ export function MagneticButton({
         target={target}
         rel={rel}
         aria-label={ariaLabel}
+        data-cursor-solid="true"
+        data-cursor-color="white"
         style={{ x: springX, y: springY }}
         className={`group relative flex h-16 w-16 cursor-pointer items-center justify-center overflow-hidden rounded-full transition-transform duration-300 hover:scale-105 ${border ? 'border border-white/20' : ''} ${className}`}
       >

@@ -18,6 +18,7 @@ import { LanguageToggle } from "./components/LanguageToggle";
 import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
 import { Curve } from "./components/ui/Curve";
+import { CustomCursor } from "./components/ui/CustomCursor";
 
 import { useLoading } from "./contexts/LoadingContext";
 
@@ -49,6 +50,7 @@ export default function App() {
 
   return (
     <>
+      <CustomCursor />
       {isLoading ? (
         <Preloader onComplete={() => setIsLoading(false)} />
       ) : (

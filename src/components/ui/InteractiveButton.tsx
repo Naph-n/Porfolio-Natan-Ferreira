@@ -54,6 +54,8 @@ export function InteractiveButton({
     <Component
       href={href}
       className={commonClasses}
+      data-cursor-solid="true"
+      data-cursor-color="white"
       {...props}
     >
       {buttonContent}

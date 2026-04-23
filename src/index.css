@@ -50,4 +50,11 @@
   body {
     @apply bg-background text-foreground font-sans antialiased selection:bg-white/20 tracking-[-0.015em] leading-[1.55];
   }
+
+  /* Hide default cursor on desktop */
+  @media (min-width: 1024px) {
+    * {
+      cursor: none !important;
+    }
+  }
 }
