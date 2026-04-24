@@ -86,6 +86,12 @@ async function startServer() {
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    // Favicon redirect for dev
+    app.get('/favicon.ico', (req, res) => {
+      res.setHeader('Content-Type', 'image/svg+xml');
+      res.sendFile(path.resolve(process.cwd(), 'public', 'favicon.svg'));
+    });
+
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -96,10 +102,10 @@ async function startServer() {
     
     app.use(express.static(distPath));
 
-    // Fallback for favicon.ico requests if not present in dist
+    // Fallback for favicon.ico requests
     app.get('/favicon.ico', (req, res) => {
-      const faviconPath = path.join(distPath, 'favicon.ico');
-      const fallbackPath = path.join(distPath, 'favicon.svg');
+      const fallbackPath = path.resolve(distPath, 'favicon.svg');
+      res.setHeader('Content-Type', 'image/svg+xml');
       res.sendFile(fallbackPath);
     });
 
