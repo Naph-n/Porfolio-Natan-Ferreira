@@ -93,7 +93,16 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
+    
     app.use(express.static(distPath));
+
+    // Fallback for favicon.ico requests if not present in dist
+    app.get('/favicon.ico', (req, res) => {
+      const faviconPath = path.join(distPath, 'favicon.ico');
+      const fallbackPath = path.join(distPath, 'favicon.svg');
+      res.sendFile(fallbackPath);
+    });
+
     app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
