@@ -92,6 +92,15 @@ async function startServer() {
       res.sendFile(path.resolve(process.cwd(), 'public', 'favicon.svg'));
     });
 
+    // Proposal routes for dev
+    app.get('/proposta-gabriela-vieira', (req, res) => {
+      res.sendFile(path.resolve(process.cwd(), 'public', 'proposta-gabriela-vieira.html'));
+    });
+
+    app.get('/proposta-mauricio-dantas', (req, res) => {
+      res.sendFile(path.resolve(process.cwd(), 'public', 'proposta-mauricio-dantas.html'));
+    });
+
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -101,6 +110,15 @@ async function startServer() {
     const distPath = path.join(process.cwd(), 'dist');
     
     app.use(express.static(distPath));
+
+    // Proposal routes for prod
+    app.get('/proposta-gabriela-vieira', (req, res) => {
+      res.sendFile(path.join(distPath, 'proposta-gabriela-vieira.html'));
+    });
+
+    app.get('/proposta-mauricio-dantas', (req, res) => {
+      res.sendFile(path.join(distPath, 'proposta-mauricio-dantas.html'));
+    });
 
     // Fallback for favicon.ico requests
     app.get('/favicon.ico', (req, res) => {

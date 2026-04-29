@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Mauricio Dantas - Natan Ferreira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #fafafa;
+            --accent-color: #3b82f6; /* Blue-500 optimized for corporate/business feel */
+            --card-bg: #171717;
+            --muted-text: #a3a3a3;
+            --border-color: #262626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.015em;
+        }
+
+        .custom-scrollbar {
+            position: fixed;
+            right: 4px;
+            top: 8px;
+            bottom: 8px;
+            width: 6px;
+            z-index: 9999;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+
+        .scrollbar-thumb {
+            position: absolute;
+            width: 100%;
+            height: 15%;
+            background-color: white;
+            border-radius: 100px;
+            top: 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            height: 28px;
+            width: auto;
+            fill: white;
+        }
+
+        main {
+            padding: 140px 20px 80px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+        }
+
+        .proposal-container {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            width: 100%;
+            max-width: 900px;
+            padding: 60px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h1 span.title-main {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .subtitle-h1 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--muted-text);
+            display: block;
+            margin-top: 4px;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: white;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 16px;
+        }
+
+        .animate-title {
+            opacity: 0;
+            display: block;
+        }
+
+        .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        .client-info {
+            font-size: 1.1rem;
+            color: var(--muted-text);
+            margin-bottom: 32px;
+        }
+
+        .divider {
+            height: 1px;
+            width: 100%;
+            background-color: var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .content-section {
+            font-size: 1.05rem;
+            color: var(--muted-text);
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        strong {
+            color: white;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 32px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .info-item h4 {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+        }
+
+        .info-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-item li {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .info-item li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 32px 0;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--muted-text);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+
+        td {
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--muted-text);
+        }
+
+        .highlight-row {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .highlight-row td {
+            color: white;
+            font-weight: 600;
+        }
+
+        .total-cell {
+            white-space: nowrap;
+            text-align: right;
+            font-size: 1.1rem;
+        }
+
+        .investment-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), transparent);
+            border-radius: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .investment-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .investment-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .investment-note {
+            font-size: 0.85rem;
+            color: var(--muted-text);
+            max-width: 280px;
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        footer {
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--muted-text);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .investment-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+                padding: 30px;
+            }
+            .investment-note {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .proposal-container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .investment-value {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.017 30.976">
+                <g>
+                    <path d="M 43.017 0.09 L 34.007 0.09 C 31.696 0.09 29.821 1.818 29.821 3.949 L 29.821 30.976 L 35.962 30.976 L 35.962 7.171 C 35.962 6.387 36.651 5.751 37.502 5.751 L 43.017 5.751 L 43.017 0.09 Z" />
+                    <path d="M 25.41 7.196 L 30.473 7.196 L 30.473 12.837 L 25.41 12.837 Z M 22.472 3.382 C 22.472 1.514 20.829 0 18.804 0 L 3.669 0 C 1.643 0 0 1.514 0 3.382 L 0 30.886 L 6.14 30.886 L 6.14 6.539 C 6.14 6.054 6.567 5.661 7.093 5.661 L 15.379 5.661 C 15.905 5.661 16.332 6.054 16.332 6.539 L 16.332 30.886 L 22.472 30.886 Z" />
+                </g>
+            </svg>
+        </a>
+    </header>
+
+    <main>
+        <div class="proposal-container">
+            <h1>
+                <span class="title-main">Orçamento</span><span style="font-weight: 300;"> — </span><span>Mauricio Dantas</span>
+                <span class="subtitle-h1">UX/UI Design Institucional (Figma)</span>
+            </h1>
+            <div class="divider"></div>
+            <p class="client-info">Cliente: <strong>Mauricio Dantas</strong><br>
+            <span style="font-size: 0.85rem; opacity: 0.7;">Data: 29 de Abril de 2026</span></p>
+            
+            <div class="content-section">
+                <h2 class="animate-title">Objetivo Geral</h2>
+                <p>Desenvolvimento exclusivo de UX e UI Design para dois websites institucionais. O projeto contempla estruturação estratégica, arquitetura de informação e planejamento de experiência do usuário (UX), com entrega final de interfaces navegáveis e componentizadas exclusivamente via <strong>Figma</strong>.</p>
+
+                <h2 class="animate-title">Projetos em Escopo</h2>
+
+                <!-- PA CONSULTORIA -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">PA CONSULTORIA</div>
+                        <div class="project-value">R$ 2.520,00</div>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h4>Estrutura Prevista</h4>
+                            <p><strong>6 páginas</strong> institucionais</p>
+                            <p><strong>1 página</strong> standby/suporte</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Escopo Aplicado</h4>
+                            <ul>
+                                <li>Arquitetura UX</li>
+                                <li>Wireframes</li>
+                                <li>UI Design</li>
+                                <li>Responsividade</li>
+                                <li>Protótipo navegável</li>
+                                <li>Organização Figma</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tags-list">
+                        <span class="tag">UX Strategy</span>
+                        <span class="tag">Wireframing</span>
+                        <span class="tag">Prototyping</span>
+                        <span class="tag">22 Horas</span>
+                    </div>
+                </div>
+
+                <!-- ESCOAGRO -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">ESCOAGRO</div>
+                        <div class="project-value">R$ 2.880,00</div>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h4>Estrutura Prevista</h4>
+                            <p><strong>4 páginas</strong> principais</p>
+                            <p><strong>8 páginas</strong> de variedades</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Escopo Aplicado</h4>
+                            <ul>
+                                <li>Arquitetura UX</li>
+                                <li>Organização de navegação</li>
+                                <li>UI Design</li>
+                                <li>Componentização</li>
+                                <li>Responsividade</li>
+                                <li>Protótipo navegável</li>
+                                <li>Organização Figma</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tags-list">
+                        <span class="tag">Information Architecture</span>
+                        <span class="tag">Visual Systems</span>
+                        <span class="tag">Component Library</span>
+                        <span class="tag">24 Horas</span>
+                    </div>
+                </div>
+
+                <h2 class="animate-title">Cronograma Estimado</h2>
+                <p>As horas de design e prototipagem serão distribuídas ao longo de <strong>15 dias úteis</strong>, considerando etapas de alinhamento, estruturação UX, desenvolvimento visual no Figma, responsividade e validações finais.</p>
+
+                <h2 class="animate-title">Resumo Financeiro</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Projeto</th>
+                                <th>Carga Horária</th>
+                                <th style="text-align: right;">Investimento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PA Consultoria</td>
+                                <td>22 horas</td>
+                                <td style="text-align: right;">R$ 2.520,00</td>
+                            </tr>
+                            <tr>
+                                <td>ESCOAGRO</td>
+                                <td>24 horas</td>
+                                <td style="text-align: right;">R$ 2.880,00</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td colspan="2">TOTAL ESTIMADO (46h)</td>
+                                <td class="total-cell">R$ 5.400,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="investment-section">
+                <div>
+                    <p class="investment-label">Investimento Total</p>
+                    <div class="investment-value">
+                        R$ 5.400,00
+                    </div>
+                </div>
+                <div class="investment-note">
+                    Design focado em UX/UI de alta fidelidade no Figma e estruturação estratégica de produto digital.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Natan Ferreira. Todos os direitos reservados.</p>
+        <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 8px;">Design & Strategy By Natan Ferreira</p>
+    </footer>
+
+    <div class="custom-scrollbar">
+        <div class="scrollbar-thumb" id="scrollbar-thumb"></div>
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+
+        const thumb = document.getElementById('scrollbar-thumb');
+
+        function raf(time) {
+            lenis.raf(time);
+            const progress = lenis.progress;
+            const top = progress * 85;
+            thumb.style.top = `${top}%`;
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        document.querySelectorAll('.animate-title').forEach(title => {
+            const text = title.textContent;
+            title.textContent = '';
+            
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.className = 'char';
+                title.appendChild(span);
+            });
+
+            gsap.to(title.querySelectorAll('.char'), {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                stagger: 0.015,
+                ease: "expo.out",
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 90%",
+                    once: true
+                }
+            });
+            
+            gsap.set(title, { opacity: 1 });
+        });
+    </script>
+
+</body>
+</html>
