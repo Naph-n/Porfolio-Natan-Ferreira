@@ -109,15 +109,70 @@
             padding: 60px;
             border-radius: 32px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin: 0 16px;
+        }
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.76, 0, 0.24, 1), transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        #preloader.exit {
+            opacity: 0;
+            transform: translateY(-100px);
+            pointer-events: none;
+        }
+
+        .preloader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .preloader-logo {
+            height: 36px;
+            fill: black;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInLogo 0.6s ease forwards;
+        }
+
+        @keyframes fadeInLogo {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-bar-container {
+            height: 2px;
+            width: 192px;
+            background: rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width 0.1s linear;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 500; /* Mais regular */
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 500;
             margin-bottom: 24px;
             color: white;
             letter-spacing: -0.02em;
             line-height: 1.2;
+            word-wrap: break-word;
         }
 
         h1 span.title-main {
@@ -129,8 +184,18 @@
             display: inline;
         }
 
+        @media (max-width: 768px) {
+            .title-dash {
+                display: none;
+            }
+            .title-client {
+                display: block;
+                margin-top: 8px;
+            }
+        }
+
         .subtitle-h1 {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             font-weight: 400;
             color: var(--muted-text);
             display: block;
@@ -139,11 +204,15 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             font-weight: 600;
             margin: 48px 0 20px;
             color: white;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 16px;
         }
+
+        /* ... existing char/badge styles ... */
 
         .animate-title {
             opacity: 0;
@@ -153,36 +222,13 @@
         .char {
             display: inline-block;
             opacity: 0;
-            transform: translateX(20px);
+            transform: translateX(10px);
         }
 
-        .verified-badge {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 6px;
-            flex-shrink: 0;
-            position: relative;
-            top: -1px;
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: white;
-            line-height: 1.4;
-        }
-
-        .nowrap {
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-        }
+        /* ... client info & divider ... */
 
         .client-info {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
             color: var(--muted-text);
             margin-bottom: 32px;
         }
@@ -195,36 +241,11 @@
         }
 
         .content-section {
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
             color: var(--muted-text);
         }
 
-        p {
-            margin-bottom: 16px;
-        }
-
-        strong {
-            color: white;
-        }
-
-        ul {
-            margin-bottom: 24px;
-            padding-left: 20px;
-            list-style: none;
-        }
-
-        li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 24px;
-        }
-
-        li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-        }
+        /* ... list & feature styles ... */
 
         .feature-grid {
             display: grid;
@@ -235,7 +256,7 @@
 
         .feature-item {
             background: rgba(255, 255, 255, 0.02);
-            padding: 24px;
+            padding: clamp(16px, 4vw, 24px);
             border-radius: 20px;
             border: 1px solid var(--border-color);
         }
@@ -247,165 +268,66 @@
             margin-bottom: 32px;
         }
 
-        .scope-item {
-            padding: 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .scope-item h4 {
-            color: white;
-            font-size: 1rem;
-            margin-bottom: 4px;
-        }
-
-        .scope-item p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            margin: 32px 0;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-        }
-
-        .table-wrapper::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-            overflow: hidden;
-            min-width: 500px;
-        }
-
-        th {
-            text-align: left;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid var(--border-color);
-            color: var(--muted-text);
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-        }
-
-        td {
-            padding: 20px 16px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--muted-text);
-        }
-
-        .highlight-row {
-            background-color: rgba(16, 185, 129, 0.05);
-        }
-
-        .highlight-row td {
-            color: white;
-            font-weight: 600;
-        }
-
-        .total-cell {
-            white-space: nowrap;
-            text-align: right;
-            font-size: 1.1rem;
-        }
+        /* ... table styles ... */
 
         .investment-section {
             margin-top: 60px;
-            padding: 40px;
+            padding: clamp(24px, 5vw, 40px);
             background: linear-gradient(to right, rgba(16, 185, 129, 0.1), transparent);
             border-radius: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .investment-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-color);
-            margin-bottom: 8px;
-            font-weight: 700;
+            gap: 24px;
         }
 
         .investment-value {
-            font-size: 3rem;
+            font-size: clamp(2rem, 7vw, 3rem);
             font-weight: 800;
             color: var(--accent-color);
             line-height: 1;
             letter-spacing: -0.04em;
         }
 
-        .investment-note {
-            font-size: 0.85rem;
-            color: var(--muted-text);
-            max-width: 260px;
-            text-align: right;
-            line-height: 1.4;
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 40px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--muted-text);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
+            .proposal-container {
+                padding: 20px;
+                border-radius: 16px;
+                margin: 0 10px;
+            }
+            main {
+                padding-top: 110px;
+            }
             .feature-grid, .scope-grid {
                 grid-template-columns: 1fr;
             }
             .investment-section {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 24px;
-                padding: 30px;
+                gap: 16px;
             }
             .investment-note {
                 text-align: left;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .proposal-container {
-                padding: 30px;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            .title-main, .title-client {
-                display: block;
-            }
-            .title-dash {
-                display: none;
-            }
-            header {
-                padding: 0 20px;
-            }
-            .investment-value {
-                font-size: 2.2rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            th, td {
-                padding: 12px 10px;
+                max-width: none;
             }
         }
     </style>
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="preloader-content">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.017 30.976" class="preloader-logo">
+                <g>
+                    <path d="M 43.017 0.09 L 34.007 0.09 C 31.696 0.09 29.821 1.818 29.821 3.949 L 29.821 30.976 L 35.962 30.976 L 35.962 7.171 C 35.962 6.387 36.651 5.751 37.502 5.751 L 43.017 5.751 L 43.017 0.09 Z" />
+                    <path d="M 25.41 7.196 L 30.473 7.196 L 30.473 12.837 L 25.41 12.837 Z M 22.472 3.382 C 22.472 1.514 20.829 0 18.804 0 L 3.669 0 C 1.643 0 0 1.514 0 3.382 L 0 30.886 L 6.14 30.886 L 6.14 6.539 C 6.14 6.054 6.567 5.661 7.093 5.661 L 15.379 5.661 C 15.905 5.661 16.332 6.054 16.332 6.539 L 16.332 30.886 L 22.472 30.886 Z" />
+                </g>
+            </svg>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
 
     <header>
         <a href="/" class="logo">
@@ -595,6 +517,38 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        // Preloader Logic
+        const progressBar = document.getElementById('progress-bar');
+        const preloader = document.getElementById('preloader');
+        let preloaderProgress = 0;
+        const duration = 2000;
+        const startTime = Date.now();
+
+        function updatePreloader() {
+            const elapsed = Date.now() - startTime;
+            const rawProgress = (elapsed / duration) * 100;
+            
+            if (rawProgress < 80) {
+                preloaderProgress = rawProgress;
+            } else if (rawProgress < 95) {
+                preloaderProgress = 80 + (rawProgress - 80) * 0.5;
+            } else {
+                preloaderProgress = 100;
+            }
+
+            progressBar.style.width = `${Math.min(preloaderProgress, 100)}%`;
+
+            if (elapsed < duration) {
+                requestAnimationFrame(updatePreloader);
+            } else {
+                progressBar.style.width = '100%';
+                setTimeout(() => {
+                    preloader.classList.add('exit');
+                }, 400);
+            }
+        }
+        requestAnimationFrame(updatePreloader);
 
         // Title Animation Logic
         document.querySelectorAll('.animate-title').forEach(title => {

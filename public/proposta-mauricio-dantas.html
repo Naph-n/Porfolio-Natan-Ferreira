@@ -105,15 +105,78 @@
             padding: 60px;
             border-radius: 32px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin: 0 16px; /* Added margin for safe space on mobile */
+        }
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.76, 0, 0.24, 1), transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        #preloader.exit {
+            opacity: 0;
+            transform: translateY(-100px);
+            pointer-events: none;
+        }
+
+        .preloader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .preloader-logo {
+            height: 36px;
+            fill: black;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInLogo 0.6s ease forwards;
+        }
+
+        @keyframes fadeInLogo {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-bar-container {
+            height: 2px;
+            width: 192px;
+            background: rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width 0.1s linear;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             font-weight: 500;
             margin-bottom: 24px;
             color: white;
             letter-spacing: -0.02em;
             line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        h1 span.hyphen {
+            display: inline;
+        }
+
+        h1 span.title-break {
+            display: inline;
         }
 
         h1 span.title-main {
@@ -122,7 +185,7 @@
         }
 
         .subtitle-h1 {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             font-weight: 400;
             color: var(--muted-text);
             display: block;
@@ -131,7 +194,7 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             font-weight: 600;
             margin: 48px 0 20px;
             color: white;
@@ -151,7 +214,7 @@
         }
 
         .client-info {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: var(--muted-text);
             margin-bottom: 32px;
         }
@@ -164,7 +227,7 @@
         }
 
         .content-section {
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
             color: var(--muted-text);
         }
 
@@ -178,33 +241,39 @@
 
         .project-card {
             background: rgba(255, 255, 255, 0.02);
-            padding: 32px;
+            padding: clamp(20px, 5vw, 32px);
             border-radius: 24px;
             border: 1px solid var(--border-color);
             margin-bottom: 32px;
+            width: 100%;
         }
 
         .project-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: flex-start;
             margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 16px;
+            gap: 8px;
         }
 
         .project-name {
-            font-size: 1.3rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: white;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
         }
 
         .project-value {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 800;
             color: var(--accent-color);
+            white-space: nowrap;
+            letter-spacing: -0.03em;
+            line-height: 1;
         }
 
         .tags-list {
@@ -219,7 +288,7 @@
             color: var(--accent-color);
             padding: 4px 12px;
             border-radius: 100px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
         }
@@ -233,7 +302,7 @@
 
         .info-item h4 {
             color: white;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -246,10 +315,11 @@
         }
 
         .info-item li {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 6px;
             padding-left: 18px;
             position: relative;
+            line-height: 1.4;
         }
 
         .info-item li::before {
@@ -265,27 +335,29 @@
             margin: 32px 0;
             border-radius: 16px;
             border: 1px solid var(--border-color);
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            min-width: 450px; /* Force minimum width to allow scrolling if too small for content */
         }
 
         th {
             text-align: left;
-            padding: 16px;
+            padding: 12px 16px;
             background: rgba(255, 255, 255, 0.03);
             border-bottom: 1px solid var(--border-color);
             color: var(--muted-text);
             text-transform: uppercase;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.1em;
         }
 
         td {
-            padding: 20px 16px;
+            padding: 16px;
             border-bottom: 1px solid var(--border-color);
             color: var(--muted-text);
         }
@@ -302,21 +374,22 @@
         .total-cell {
             white-space: nowrap;
             text-align: right;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .investment-section {
             margin-top: 60px;
-            padding: 40px;
+            padding: clamp(20px, 6vw, 40px);
             background: linear-gradient(to right, rgba(59, 130, 246, 0.1), transparent);
             border-radius: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 24px;
         }
 
         .investment-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--accent-color);
@@ -325,7 +398,7 @@
         }
 
         .investment-value {
-            font-size: 3rem;
+            font-size: clamp(2rem, 7vw, 3rem);
             font-weight: 800;
             color: var(--accent-color);
             line-height: 1;
@@ -333,7 +406,7 @@
         }
 
         .investment-note {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--muted-text);
             max-width: 280px;
             text-align: right;
@@ -341,42 +414,96 @@
         }
 
         footer {
-            padding: 60px 40px;
+            padding: 60px 20px;
             text-align: center;
             border-top: 1px solid var(--border-color);
             color: var(--muted-text);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 0 20px;
+            }
+            .proposal-container {
+                padding: 40px;
+            }
         }
 
         @media (max-width: 768px) {
+            main {
+                padding-top: 100px;
+            }
             .info-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             .investment-section {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 24px;
-                padding: 30px;
+                gap: 20px;
             }
             .investment-note {
                 text-align: left;
+                max-width: none;
+            }
+            h1 span.hyphen {
+                display: none;
+            }
+            h1 span.title-break {
+                display: block;
+                margin-top: 8px;
             }
         }
 
-        @media (max-width: 640px) {
+        main {
+            padding: 140px 0 80px; /* Removed horizontal padding here, using margin on container instead */
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        @media (max-width: 480px) {
             .proposal-container {
-                padding: 30px;
+                padding: 20px;
+                border-radius: 16px;
+                margin: 0 10px;
+            }
+            .project-header {
+                gap: 6px;
+            }
+            .project-name {
+                font-size: 0.75rem;
+            }
+            .project-value {
+                font-size: 1.5rem;
+            }
+            .tag {
+                font-size: 0.6rem;
+                padding: 2px 8px;
             }
             h1 {
-                font-size: 2rem;
-            }
-            .investment-value {
-                font-size: 2.2rem;
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="preloader-content">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.017 30.976" class="preloader-logo">
+                <g>
+                    <path d="M 43.017 0.09 L 34.007 0.09 C 31.696 0.09 29.821 1.818 29.821 3.949 L 29.821 30.976 L 35.962 30.976 L 35.962 7.171 C 35.962 6.387 36.651 5.751 37.502 5.751 L 43.017 5.751 L 43.017 0.09 Z" />
+                    <path d="M 25.41 7.196 L 30.473 7.196 L 30.473 12.837 L 25.41 12.837 Z M 22.472 3.382 C 22.472 1.514 20.829 0 18.804 0 L 3.669 0 C 1.643 0 0 1.514 0 3.382 L 0 30.886 L 6.14 30.886 L 6.14 6.539 C 6.14 6.054 6.567 5.661 7.093 5.661 L 15.379 5.661 C 15.905 5.661 16.332 6.054 16.332 6.539 L 16.332 30.886 L 22.472 30.886 Z" />
+                </g>
+            </svg>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
 
     <header>
         <a href="/" class="logo">
@@ -392,8 +519,8 @@
     <main>
         <div class="proposal-container">
             <h1>
-                <span class="title-main">Orçamento</span><span style="font-weight: 300;"> — </span><span>Mauricio Dantas</span>
-                <span class="subtitle-h1">UX/UI Design Institucional (Figma)</span>
+                <span class="title-main">Orçamento</span><span class="hyphen" style="font-weight: 300;"> — </span><span class="title-break">Mauricio Dantas</span>
+                <span class="subtitle-h1">UX/UI Design & Frontend Development</span>
             </h1>
             <div class="divider"></div>
             <p class="client-info">Cliente: <strong>Mauricio Dantas</strong><br>
@@ -401,7 +528,7 @@
             
             <div class="content-section">
                 <h2 class="animate-title">Objetivo Geral</h2>
-                <p>Desenvolvimento exclusivo de UX e UI Design para dois websites institucionais. O projeto contempla estruturação estratégica, arquitetura de informação e planejamento de experiência do usuário (UX), com entrega final de interfaces navegáveis e componentizadas exclusivamente via <strong>Figma</strong>.</p>
+                <p>Desenvolvimento completo de UX e UI Design no Figma com implementação técnica em código para dois websites institucionais. O projeto contempla estruturação estratégica, arquitetura de informação, desenvolvimento de interface moderna e codificação de alta performance.</p>
 
                 <h2 class="animate-title">Projetos em Escopo</h2>
 
@@ -420,19 +547,19 @@
                         <div class="info-item">
                             <h4>Escopo Aplicado</h4>
                             <ul>
-                                <li>Arquitetura UX</li>
-                                <li>Wireframes</li>
-                                <li>UI Design</li>
-                                <li>Responsividade</li>
-                                <li>Protótipo navegável</li>
-                                <li>Organização Figma</li>
+                                <li>Arquitetura UX & UI</li>
+                                <li>Wireframes no Figma</li>
+                                <li>Desenvolvimento de Código</li>
+                                <li>Design Responsivo</li>
+                                <li>Otimização de Performance</li>
+                                <li>Manual da Marca Digital</li>
                             </ul>
                         </div>
                     </div>
                     <div class="tags-list">
                         <span class="tag">UX Strategy</span>
-                        <span class="tag">Wireframing</span>
-                        <span class="tag">Prototyping</span>
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Figma</span>
                         <span class="tag">22 Horas</span>
                     </div>
                 </div>
@@ -452,20 +579,19 @@
                         <div class="info-item">
                             <h4>Escopo Aplicado</h4>
                             <ul>
-                                <li>Arquitetura UX</li>
-                                <li>Organização de navegação</li>
-                                <li>UI Design</li>
-                                <li>Componentização</li>
-                                <li>Responsividade</li>
-                                <li>Protótipo navegável</li>
-                                <li>Organização Figma</li>
+                                <li>Arquitetura de Navegação</li>
+                                <li>Interface UI (Figma)</li>
+                                <li>Desenvolvimento de Código</li>
+                                <li>Codificação Responsiva</li>
+                                <li>Componentização Reutilizável</li>
+                                <li>SEO Estrutural</li>
                             </ul>
                         </div>
                     </div>
                     <div class="tags-list">
-                        <span class="tag">Information Architecture</span>
-                        <span class="tag">Visual Systems</span>
-                        <span class="tag">Component Library</span>
+                        <span class="tag">Architecture</span>
+                        <span class="tag">Web Engineering</span>
+                        <span class="tag">Figma</span>
                         <span class="tag">24 Horas</span>
                     </div>
                 </div>
@@ -546,6 +672,38 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        // Preloader Logic
+        const progressBar = document.getElementById('progress-bar');
+        const preloader = document.getElementById('preloader');
+        let preloaderProgress = 0;
+        const duration = 2000;
+        const startTime = Date.now();
+
+        function updatePreloader() {
+            const elapsed = Date.now() - startTime;
+            const rawProgress = (elapsed / duration) * 100;
+            
+            if (rawProgress < 80) {
+                preloaderProgress = rawProgress;
+            } else if (rawProgress < 95) {
+                preloaderProgress = 80 + (rawProgress - 80) * 0.5;
+            } else {
+                preloaderProgress = 100;
+            }
+
+            progressBar.style.width = `${Math.min(preloaderProgress, 100)}%`;
+
+            if (elapsed < duration) {
+                requestAnimationFrame(updatePreloader);
+            } else {
+                progressBar.style.width = '100%';
+                setTimeout(() => {
+                    preloader.classList.add('exit');
+                }, 400);
+            }
+        }
+        requestAnimationFrame(updatePreloader);
 
         document.querySelectorAll('.animate-title').forEach(title => {
             const text = title.textContent;
