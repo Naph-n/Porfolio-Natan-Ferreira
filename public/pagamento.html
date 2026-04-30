@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento de Entrada — NF Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #fafafa;
+            --accent-color: #3b82f6; 
+            --card-bg: #171717;
+            --muted-text: #a3a3a3;
+            --border-color: #262626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-weight: 300;
+        }
+
+        .payment-card {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 440px;
+            padding: 40px;
+            border-radius: 32px;
+            border: none;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-section {
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .avatar-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            position: relative;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #222, #333);
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--card-bg);
+        }
+
+        .verified-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+
+        .studio-logo svg {
+            height: 20px;
+            fill: white;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            color: var(--muted-text);
+            margin-top: 8px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            height: 1px;
+            width: 100%;
+            background-color: var(--border-color);
+            margin: 24px 0;
+        }
+
+        h1 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .pix-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: none;
+            padding: 24px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .pix-key {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+
+        .bank-name {
+            font-size: 0.85rem;
+            color: var(--muted-text);
+        }
+
+        .copy-button {
+            margin-top: 16px;
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .copy-button:hover {
+            background-color: #e5e5e5;
+            transform: translateY(-2px);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        .note {
+            font-size: 0.75rem;
+            color: var(--muted-text);
+            line-height: 1.6;
+            opacity: 0.6;
+        }
+
+        /* Success Toast */
+        #toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            white-space: nowrap;
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-card">
+        <div class="profile-section">
+            <div class="avatar-container">
+                <img src="https://framerusercontent.com/images/aCi97T93KLAF5XkrpugqlKPKpc.png?scale-down-to=2048&width=4096&height=4096" alt="Natan Ferreira" class="avatar" referrerPolicy="no-referrer">
+                <div class="verified-badge">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                </div>
+            </div>
+            <div class="studio-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.017 30.976">
+                    <g>
+                        <path d="M 43.017 0.09 L 34.007 0.09 C 31.696 0.09 29.821 1.818 29.821 3.949 L 29.821 30.976 L 35.962 30.976 L 35.962 7.171 C 35.962 6.387 36.651 5.751 37.502 5.751 L 43.017 5.751 L 43.017 0.09 Z" />
+                        <path d="M 25.41 7.196 L 30.473 7.196 L 30.473 12.837 L 25.41 12.837 Z M 22.472 3.382 C 22.472 1.514 20.829 0 18.804 0 L 3.669 0 C 1.643 0 0 1.514 0 3.382 L 0 30.886 L 6.14 30.886 L 6.14 6.539 C 6.14 6.054 6.567 5.661 7.093 5.661 L 15.379 5.661 C 15.905 5.661 16.332 6.054 16.332 6.539 L 16.332 30.886 L 22.472 30.886 Z" />
+                    </g>
+                </svg>
+            </div>
+            <p class="tagline">UX/UI • Web Design • Audiovisual</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h1>PAGAMENTO DE ENTRADA</h1>
+        <p class="description">Referente à primeira etapa do projeto de UX/UI Design de dois websites institucionais desenvolvidos no Figma.</p>
+
+        <div class="pix-container">
+            <p class="label">Chave PIX (CNPJ)</p>
+            <p class="pix-key" id="pix-key">66.537.019/0001-80</p>
+            <p class="bank-name">Nome: 66.537.019</p>
+            
+            <button class="copy-button" onclick="copyPix()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copiar Chave
+            </button>
+        </div>
+
+        <p class="note">📄 Após a confirmação, a nota fiscal será enviada juntamente com o início oficial do cronograma.</p>
+    </div>
+
+    <div id="toast">Copiado para a área de transferência!</div>
+
+    <script>
+        function copyPix() {
+            const pixKey = "66.537.019/0001-80";
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>

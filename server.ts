@@ -101,6 +101,10 @@ async function startServer() {
       res.sendFile(path.resolve(process.cwd(), 'public', 'proposta-mauricio-dantas.html'));
     });
 
+    app.get('/pagamento', (req, res) => {
+      res.sendFile(path.resolve(process.cwd(), 'public', 'pagamento.html'));
+    });
+
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -118,6 +122,10 @@ async function startServer() {
 
     app.get('/proposta-mauricio-dantas', (req, res) => {
       res.sendFile(path.join(distPath, 'proposta-mauricio-dantas.html'));
+    });
+
+    app.get('/pagamento', (req, res) => {
+      res.sendFile(path.join(distPath, 'pagamento.html'));
     });
 
     // Fallback for favicon.ico requests
