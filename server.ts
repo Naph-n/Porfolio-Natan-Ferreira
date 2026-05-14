@@ -3,6 +3,7 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { Resend } from "resend";
 import dotenv from "dotenv";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
@@ -10,10 +11,19 @@ async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
 
+  // Rate Limiting to prevent "abusive activities"
+  const contactLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limit each IP to 5 requests per window
+    message: { error: "Muitas tentativas", message: "Por favor, aguarde alguns minutos antes de tentar novamente." },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
   app.use(express.json());
 
   // API Route for Contact Form
-  app.post("/api/enviar-contato", async (req, res) => {
+  app.post("/api/enviar-contato", contactLimiter, async (req, res) => {
     const { name, email, phone, message } = req.body;
 
     // Validação básica e limpeza de dados
@@ -68,10 +78,11 @@ async function startServer() {
       });
 
       if (error) {
-        console.error("Erro detalhado do Resend:", JSON.stringify(error, null, 2));
+        // Sanitize logs: avoid logging full error object which might contain secrets
+        console.error("Erro na API do Resend:", error.message || "Erro desconhecido");
         return res.status(400).json({ 
           error: "Erro na API do Resend", 
-          message: error.message,
+          message: "Ocorreu um problema ao enviar o e-mail. Por favor, tente novamente mais tarde.",
           type: error.name 
         });
       }
