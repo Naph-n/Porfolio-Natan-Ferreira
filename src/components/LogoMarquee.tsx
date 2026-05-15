@@ -19,13 +19,16 @@ export const LogoMarquee: React.FC = () => {
   const displayLogos = [...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS];
 
   return (
-    <div className="relative w-full overflow-hidden pt-64 pb-32 md:pt-80 md:pb-48 bg-transparent">
-      <div className="max-w-5xl mx-auto px-8 md:px-12 relative">
-        {/* Side gradients for fading effect within the central container */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 z-10 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 z-10 bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent pointer-events-none" />
-        
-        <div className="flex flex-col items-center gap-12">
+    <div className="relative w-full overflow-hidden pt-12 pb-12 md:pt-32 md:pb-24 bg-transparent">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 relative">
+        {/* Use mask-image for a cleaner fade that doesn't cut off background images */}
+        <div 
+          className="flex flex-col items-center gap-8 md:gap-12"
+          style={{
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+          }}
+        >
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,10 +60,10 @@ export const LogoMarquee: React.FC = () => {
                     alt="Partner Logo"
                     className={`h-full w-full object-contain opacity-40 group-hover:opacity-100 transition-all duration-500 brightness-0 invert ${
                       logoUrl.includes('NOLOOK') || logoUrl.includes('UISA') 
-                        ? 'max-h-5 md:max-h-6' 
+                        ? 'max-h-4 md:max-h-5 lg:max-h-6' 
                         : logoUrl.includes('RUSTIK')
-                          ? 'max-h-12 md:max-h-14'
-                          : 'max-h-8 md:max-h-10'
+                          ? 'max-h-10 md:max-h-12 lg:max-h-14'
+                          : 'max-h-6 md:max-h-8 lg:max-h-10'
                     }`}
                     onError={(e) => {
                       console.error(`Failed to load logo: ${logoUrl}`);

@@ -19,7 +19,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
 
   return (
-    <section ref={containerRef} className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-48 md:pb-64 lg:pb-80 text-white">
+    <section ref={containerRef} className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-72 md:pb-56 lg:pb-80 text-white">
       {/* Background Image with Overlay - Only visible on mobile/tablet */}
       <motion.div 
         className="absolute inset-0 z-0 lg:hidden"
