@@ -24,6 +24,7 @@ const translations: Translations = {
   'hero.title': { pt: 'Ajudando marcas a se moverem!', en: 'Helping brands move!' },
   'hero.subtitle': { pt: 'Transformo conceitos em experiências visuais que unem produto, marca e público!', en: 'I transform concepts into visual experiences that unite product, brand, and audience!' },
   'hero.cta': { pt: 'Vamos conversar', en: "Let's talk" },
+  'hero.marquee': { pt: 'Trusted by', en: 'Trusted by' },
 
   // About
   'about.badge': { pt: 'Sobre mim', en: 'About me' },

@@ -17,7 +17,6 @@ import { CustomScrollbar } from "./components/CustomScrollbar";
 import { LanguageToggle } from "./components/LanguageToggle";
 import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
-import { Curve } from "./components/ui/Curve";
 import { CustomCursor } from "./components/ui/CustomCursor";
 
 import { useLoading } from "./contexts/LoadingContext";
@@ -62,10 +61,6 @@ export default function App() {
           <main>
             <Hero />
             
-            {/* Hero to About - Mantendo a primeira transição arredondada apenas no desktop */}
-            <div className="hidden lg:block relative z-20 lg:-mt-[100px]">
-              <Curve color="white" />
-            </div>
             <About />
 
             <Services />
