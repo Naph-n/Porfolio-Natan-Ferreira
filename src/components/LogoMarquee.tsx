@@ -10,6 +10,7 @@ const LOGOS = [
   'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/Logo%20Png.png',
   'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/FLORESCER.svg',
   'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/UISA.svg',
+  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/LOGO%2065.svg',
 ];
 
 export const LogoMarquee: React.FC = () => {

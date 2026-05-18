@@ -8,7 +8,7 @@ export function CustomCursor() {
   const [isSolid, setIsSolid] = useState(false);
   const [solidColor, setSolidColor] = useState("white");
 
-  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
+  const springConfig = { damping: 35, stiffness: 1000, mass: 0.1 };
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
 
