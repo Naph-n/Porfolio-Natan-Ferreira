@@ -69,7 +69,7 @@ export function Portfolio() {
               <div className="flex flex-col justify-between">
                 <div>
                   <h4 className="mb-4 font-display text-3xl font-medium text-white">{link.title}</h4>
-                  <p className="text-base text-white/60">{link.description}</p>
+                  <p className="text-base text-white/60 font-normal">{link.description}</p>
                 </div>
                 <InteractiveButton
                   as="div"

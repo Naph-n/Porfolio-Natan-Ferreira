@@ -80,7 +80,7 @@ export function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center"
           >
-            <p className="text-xl font-light text-gray-600">
+            <p className="text-xl font-normal text-gray-600">
               {t('about.desc')}
             </p>
           </motion.div>
@@ -161,7 +161,7 @@ export function About() {
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} countStart={0} duration={2.5} />
                 </span>
                 <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>
-                <p className="text-base text-gray-600 leading-relaxed">{stat.description}</p>
+                <p className="text-base text-gray-600 leading-relaxed font-normal">{stat.description}</p>
               </div>
             </motion.div>
           ))}

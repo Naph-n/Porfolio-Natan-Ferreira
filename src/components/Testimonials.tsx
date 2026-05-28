@@ -95,7 +95,7 @@ export function Testimonials() {
               <Star key={i} size={16} className="fill-[#F59E0B] text-[#F59E0B]" />
             ))}
           </div>
-          <p className="mb-8 text-base text-gray-700">
+          <p className="mb-8 text-base text-gray-700 font-normal">
             "{testimonial.text}"
           </p>
         </div>
@@ -109,7 +109,7 @@ export function Testimonials() {
           />
           <div>
             <h4 className="font-medium text-black">{testimonial.author}</h4>
-            <p className="text-sm text-gray-500">{testimonial.role}</p>
+            <p className="text-sm text-gray-500 font-normal">{testimonial.role}</p>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@ export function Testimonials() {
           <h3 className="font-display text-5xl font-medium tracking-tight sm:text-6xl flex justify-center text-center">
             <AnimatedText text={t('testimonials.title')} className="justify-center" />
           </h3>
-          <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600">
+          <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600 font-normal">
             {t('testimonials.subtitle')}
           </p>
         </motion.div>

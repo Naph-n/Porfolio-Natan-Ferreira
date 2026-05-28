@@ -46,7 +46,7 @@ export function FAQ() {
             <AnimatedText text={t('faq.title1')} className="justify-center" />
             <AnimatedText text={t('faq.title2')} className="justify-center" />
           </h3>
-          <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600">
+          <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-600 font-normal">
             {t('faq.subtitle')}
           </p>
         </motion.div>

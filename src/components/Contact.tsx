@@ -79,7 +79,7 @@ export function Contact() {
             <h3 className="mb-6 font-display text-5xl font-medium tracking-tight sm:text-6xl">
               <AnimatedText text={t('contact.title')} />
             </h3>
-            <p className="mb-12 max-w-md text-lg text-white/70">
+            <p className="mb-12 max-w-md text-lg text-white/70 font-normal">
               {t('contact.subtitle')}
             </p>
 
@@ -90,7 +90,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="mb-1 font-display text-lg font-medium text-white">{t('contact.office')}</h4>
-                  <p className="text-lg text-white/60">Mato Grosso - Brasil</p>
+                  <p className="text-lg text-white/60 font-normal">Mato Grosso - Brasil</p>
                 </div>
               </div>
 

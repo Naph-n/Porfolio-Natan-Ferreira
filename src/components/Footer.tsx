@@ -27,10 +27,10 @@ export function Footer() {
               </g>
             </svg>
           </a>
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-white/50 font-normal">
             {t('footer.rights')}
           </p>
-          <p className="text-xs text-white/30 mt-1">
+          <p className="text-xs text-white/30 mt-1 font-normal">
             {t('footer.signature')}
           </p>
         </div>

@@ -70,7 +70,7 @@ export function Services() {
           <h3 className="font-display text-5xl font-medium tracking-tight sm:text-5xl text-center flex justify-center">
             <AnimatedText text={t('services.title')} className="justify-center" />
           </h3>
-          <p className="mt-4 max-w-2xl text-lg text-gray-600">
+          <p className="mt-4 max-w-2xl text-lg text-gray-600 font-normal">
             {t('services.subtitle')}
           </p>
         </motion.div>
@@ -145,7 +145,7 @@ export function Services() {
                       transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 pl-14 text-gray-600">
+                      <p className="pb-6 pl-14 text-gray-600 font-normal">
                         {service.description}
                       </p>
                     </motion.div>
