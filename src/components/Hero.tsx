@@ -34,7 +34,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0 bg-black/80 lg:hidden" />
 
       <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16 items-center relative z-10">
-        <div className="relative z-10 max-w-3xl text-left">
+        <div className="relative z-10 max-w-3xl text-left lg:-translate-y-12 xl:-translate-y-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
