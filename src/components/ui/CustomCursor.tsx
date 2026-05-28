@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion, useSpring } from "motion/react";
 
 export function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [isSolid, setIsSolid] = useState(false);
@@ -17,7 +16,6 @@ export function CustomCursor() {
       if (isHidden) setIsHidden(false);
       
       const { clientX, clientY } = e;
-      setPosition({ x: clientX, y: clientY });
       cursorX.set(clientX);
       cursorY.set(clientY);
       
