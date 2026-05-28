@@ -154,12 +154,15 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col items-center sm:items-start text-center sm:text-left"
             >
-              <div className="font-display text-5xl font-light tracking-tighter text-black mb-4">
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+              <div className="mb-4">
+                <span className="font-display text-5xl md:text-6xl font-light tracking-tighter text-blue-600 block mb-2">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} countStart={0} duration={2.5} />
+                </span>
+                <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>
+                <p className="text-base text-gray-600 leading-relaxed">{stat.description}</p>
               </div>
-              <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>
-              <p className="text-base text-gray-600 leading-relaxed">{stat.description}</p>
             </motion.div>
           ))}
         </div>
