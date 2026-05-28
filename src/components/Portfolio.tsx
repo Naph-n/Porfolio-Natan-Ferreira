@@ -36,7 +36,7 @@ export function Portfolio() {
           <span className="inline-block rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white mb-6">
             {t('portfolio.badge')}
           </span>
-          <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl">
+          <h3 className="font-display text-5xl font-medium tracking-tight sm:text-6xl">
             <AnimatedText text={t('portfolio.title1')} delay={0.1} /><br />
             <span className="inline-block whitespace-nowrap">
               <AnimatedText text={t('portfolio.title2')} delay={0.3} />
@@ -68,7 +68,7 @@ export function Portfolio() {
             >
               <div className="flex flex-col justify-between">
                 <div>
-                  <h4 className="mb-4 font-display text-3xl font-normal text-white">{link.title}</h4>
+                  <h4 className="mb-4 font-display text-3xl font-medium text-white">{link.title}</h4>
                   <p className="text-base text-white/60">{link.description}</p>
                 </div>
                 <InteractiveButton

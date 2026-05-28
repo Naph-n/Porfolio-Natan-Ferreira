@@ -66,7 +66,7 @@ export function About() {
             <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
               {t('about.badge')}
             </span>
-            <h3 className="font-display text-5xl font-normal tracking-tight sm:text-5xl leading-tight">
+            <h3 className="font-display text-5xl font-medium tracking-tight sm:text-5xl leading-tight">
               <AnimatedText text={t('about.title1')} delay={0.1} /><br />
               <AnimatedText text={t('about.title2')} delay={0.3} /><br />
               <span className="text-blue-600"><AnimatedText text={t('about.title3')} delay={0.5} /></span>
@@ -157,7 +157,7 @@ export function About() {
               className="flex flex-col items-center sm:items-start text-center sm:text-left"
             >
               <div className="mb-4">
-                <span className="font-display text-5xl md:text-6xl font-light tracking-tighter text-blue-600 block mb-2">
+                <span className="font-display text-5xl md:text-6xl font-medium tracking-tight text-blue-600 block mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} countStart={0} duration={2.5} />
                 </span>
                 <h4 className="text-lg font-medium text-black mb-2">{stat.label}</h4>

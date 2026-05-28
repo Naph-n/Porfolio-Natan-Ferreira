@@ -76,7 +76,7 @@ export function Contact() {
             <span className="mb-6 w-fit rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white">
               {t('contact.badge')}
             </span>
-            <h3 className="mb-6 font-display text-5xl font-normal tracking-tight sm:text-6xl">
+            <h3 className="mb-6 font-display text-5xl font-medium tracking-tight sm:text-6xl">
               <AnimatedText text={t('contact.title')} />
             </h3>
             <p className="mb-12 max-w-md text-lg text-white/70">
@@ -89,7 +89,7 @@ export function Contact() {
                   <MapPin size={24} strokeWidth={1.25} />
                 </div>
                 <div>
-                  <h4 className="mb-1 font-display text-lg font-normal text-white">{t('contact.office')}</h4>
+                  <h4 className="mb-1 font-display text-lg font-medium text-white">{t('contact.office')}</h4>
                   <p className="text-lg text-white/60">Mato Grosso - Brasil</p>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export function Contact() {
                   <Mail size={24} strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />
                 </div>
                 <div>
-                  <h4 className="mb-1 font-display text-lg font-normal text-white">{t('contact.email')}</h4>
+                  <h4 className="mb-1 font-display text-lg font-medium text-white">{t('contact.email')}</h4>
                   <a href="mailto:natan.furtado@outlook.com" className="text-lg text-white/60 hover:text-white transition-colors">
                     natan.furtado@outlook.com
                   </a>
@@ -111,7 +111,7 @@ export function Contact() {
                   <Phone size={24} strokeWidth={1.5} fill="currentColor" fillOpacity={0.1} />
                 </div>
                 <div>
-                  <h4 className="mb-1 font-display text-lg font-normal text-white">{t('contact.phone')}</h4>
+                  <h4 className="mb-1 font-display text-lg font-medium text-white">{t('contact.phone')}</h4>
                   <a href="tel:65999279386" className="text-lg text-white/60 hover:text-white transition-colors">
                     65 999279386
                   </a>

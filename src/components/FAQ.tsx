@@ -42,7 +42,7 @@ export function FAQ() {
           <span className="inline-block rounded-full bg-[#1a1a1a] px-5 py-2 text-sm font-medium text-white mb-6">
             {t('faq.badge')}
           </span>
-          <h3 className="font-display text-5xl font-normal tracking-tight sm:text-6xl text-center flex flex-col items-center">
+          <h3 className="font-display text-5xl font-medium tracking-tight sm:text-6xl text-center flex flex-col items-center">
             <AnimatedText text={t('faq.title1')} className="justify-center" />
             <AnimatedText text={t('faq.title2')} className="justify-center" />
           </h3>
@@ -65,7 +65,7 @@ export function FAQ() {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="flex w-full items-center justify-between p-6 text-left sm:p-8"
               >
-                <span className="font-display text-lg font-normal text-black sm:text-xl">
+                <span className="font-display text-lg font-medium text-black sm:text-xl">
                   {faq.question}
                 </span>
                 <span className="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-blue-600">
