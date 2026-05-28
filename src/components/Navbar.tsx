@@ -49,20 +49,22 @@ export function Navbar() {
 
           <div className="flex items-center gap-4 lg:gap-4">
             {/* Desktop Nav */}
-            <div className="hidden items-center gap-2 lg:flex">
+            <div className="hidden items-center lg:flex rounded-full bg-white/[0.04] h-[42px] px-2 backdrop-blur-md">
               {links.map((link, index) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, y: -20 }}
                   animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  className="h-full"
                 >
                   <MagneticText
                     href={link.href}
-                    className="group relative inline-flex flex-col items-center text-lg font-normal text-white/80 transition-colors hover:text-white"
+                    wrapperClassName="inline-flex h-full px-2 lg:px-3 items-center justify-center cursor-pointer"
+                    className="group relative inline-flex items-center justify-center text-[0.95rem] tracking-wide font-normal text-white/80 transition-colors hover:text-white"
                   >
                     <span>{link.name}</span>
-                    <span className="absolute -bottom-2 h-1.5 w-1.5 scale-0 rounded-full bg-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
+                    <span className="absolute -bottom-2 h-1 w-1 scale-0 rounded-full bg-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
                   </MagneticText>
                 </motion.div>
               ))}
@@ -76,7 +78,7 @@ export function Navbar() {
               initial={{ opacity: 0, y: -20 }}
               animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="hidden lg:flex rounded-full border border-white/20 px-4 py-1.5 text-lg font-normal text-white transition-colors hover:bg-white hover:text-black lg:px-6 lg:py-2"
+              className="hidden lg:flex items-center justify-center rounded-full border border-white/20 px-6 h-[42px] text-[0.95rem] tracking-wide font-normal text-white transition-colors hover:bg-white hover:text-black"
             >
               {t('nav.resume')}
             </motion.a>

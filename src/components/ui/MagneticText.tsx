@@ -3,11 +3,12 @@ import { motion, useSpring, useMotionValue } from 'motion/react';
 
 interface MagneticTextProps {
   children: React.ReactNode;
-  href: string;
+  href?: string;
   className?: string;
+  wrapperClassName?: string;
 }
 
-export function MagneticText({ children, href, className = "" }: MagneticTextProps) {
+export function MagneticText({ children, href, className = "", wrapperClassName = "inline-block" }: MagneticTextProps) {
   const ref = useRef<HTMLDivElement>(null);
   
   const x = useMotionValue(0);
@@ -42,7 +43,7 @@ export function MagneticText({ children, href, className = "" }: MagneticTextPro
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="inline-block p-4" // Added padding to increase the magnetic hit area
+      className={wrapperClassName}
     >
       <motion.a
         href={href}
