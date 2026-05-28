@@ -18,6 +18,7 @@ import { LanguageToggle } from "./components/LanguageToggle";
 import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
 import { CustomCursor } from "./components/ui/CustomCursor";
+import { LogoMarquee } from "./components/LogoMarquee";
 
 import { useLoading } from "./contexts/LoadingContext";
 
@@ -60,6 +61,10 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
+            
+            <div className="bg-[#0a0a0a] w-full">
+              <LogoMarquee />
+            </div>
             
             <About />
 
