@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { motion, useSpring, useMotionValue } from 'motion/react';
+import { motion } from 'motion/react';
 
 interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -26,34 +26,56 @@ export function InteractiveButton({
   hoverTextClassName = 'group-hover:text-black',
   ...props 
 }: InteractiveButtonProps) {
-  const Component = as as any;
+  const Component = motion[as as any] || (motion as any).button;
+  const [isHovered, setIsHovered] = useState(false);
   const isLarge = circleClassName.includes('h-10');
   const sizeClass = isLarge ? 'h-10 w-10' : 'h-8 w-8';
 
   const buttonContent = (
     <>
-      {/* Expanding background effect */}
-      <div className={`absolute ${isLarge ? 'right-8' : 'right-6'} top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0`}>
-        <span 
-          className="h-4 w-4 rounded-full bg-white transition-transform duration-600 will-change-transform [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] scale-0 group-hover:scale-[100] [backface-visibility:hidden]" 
-        />
-      </div>
-      
-      <span className={`relative z-10 transition-colors duration-600 [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] group-hover:delay-100 ${textClassName} ${hoverTextClassName}`}>
-        {children}
+      <span className="relative z-20 flex items-center justify-start gap-2">
+        <motion.span 
+          className={`relative ${textClassName}`}
+          animate={{ color: isHovered ? '#000000' : '#ffffff' }}
+          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+        >
+          {children}
+        </motion.span>
       </span>
-      <span className={`relative z-10 flex shrink-0 items-center justify-center rounded-full transition-all duration-600 [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] group-hover:delay-100 ${sizeClass} ${circleClassName.includes('bg-white') ? 'bg-white' : ''} ${hoverIconClassName} antialiased`}>
-        <ArrowUpRight size={isLarge ? 20 : 16} className={`relative z-20 transition-transform duration-600 [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 ${iconClassName} ${hoverIconClassName}`} />
+      
+      <span className={`relative z-10 flex shrink-0 items-center justify-center rounded-full ${sizeClass} ${circleClassName.includes('bg-white') ? 'bg-white' : ''} antialiased`}>
+        {/* Absolute Centered Expanding Background */}
+        <motion.span 
+          className="absolute inset-0 rounded-full bg-white pointer-events-none z-0"
+          initial={{ scale: 1 }}
+          animate={{ scale: isHovered ? 40 : 1 }}
+          transition={{ 
+            duration: 0.6, 
+            ease: [0.76, 0, 0.24, 1] // Dennis Snellenberg easing: starts agile, decelerates smoothly. Works perfectly in reverse.
+          }}
+          style={{ 
+            transformOrigin: "center" 
+          }}
+        />
+        <motion.span
+          className="relative z-20 flex items-center justify-center"
+          animate={{ rotate: isHovered ? 45 : 0 }}
+          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+        >
+          <ArrowUpRight size={isLarge ? 20 : 16} className={`${iconClassName}`} />
+        </motion.span>
       </span>
     </>
   );
 
-  const commonClasses = `group relative inline-flex items-center justify-between gap-4 overflow-hidden transition-colors duration-600 [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] hover:bg-white hover:delay-150 hover:duration-500 [transform:translateZ(0)] border border-transparent antialiased ${className}`;
+  const commonClasses = `group relative inline-flex items-center justify-between gap-4 overflow-hidden border border-transparent antialiased transition-colors duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] hover:bg-white ${className}`;
 
   return (
     <Component
       href={href}
       className={commonClasses}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       data-cursor-solid="true"
       data-cursor-color="white"
       {...props}

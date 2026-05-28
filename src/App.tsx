@@ -17,7 +17,6 @@ import { CustomScrollbar } from "./components/CustomScrollbar";
 import { LanguageToggle } from "./components/LanguageToggle";
 import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
-import { CustomCursor } from "./components/ui/CustomCursor";
 import { LogoMarquee } from "./components/LogoMarquee";
 
 import { useLoading } from "./contexts/LoadingContext";
@@ -50,7 +49,6 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
       {isLoading ? (
         <Preloader onComplete={() => setIsLoading(false)} />
       ) : (
