@@ -95,6 +95,39 @@ async function startServer() {
     }
   });
 
+  // API Proxy endpoint to safely serve partner logos, bypassing client-side CORS or loading restrictions
+  app.get("/api/proxy-logo", async (req, res) => {
+    const logoUrl = req.query.url as string;
+    if (!logoUrl) {
+      return res.status(400).json({ error: "Missing url parameter" });
+    }
+
+    // Security check: ensure requests only go to the designated studiovozeverso GCS bucket
+    if (!logoUrl.startsWith("https://storage.googleapis.com/studiovozeverso/")) {
+      return res.status(403).json({ error: "Unauthorized proxy target" });
+    }
+
+    try {
+      // Use native fetch supported globally in Node 18+
+      const response = await fetch(logoUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch from remote: ${response.status} ${response.statusText}`);
+      }
+
+      const contentType = response.headers.get("content-type") || "image/svg+xml";
+      res.setHeader("Content-Type", contentType);
+      // Serve with a long-term cache header since static partner logos change very infrequently
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      res.send(buffer);
+    } catch (error: any) {
+      console.error(`Error proxying logo ${logoUrl}:`, error.message);
+      res.status(500).json({ error: "Failed to proxy logo", message: error.message });
+    }
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     // Favicon redirect for dev

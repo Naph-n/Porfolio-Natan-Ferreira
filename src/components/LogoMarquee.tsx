@@ -57,7 +57,7 @@ export const LogoMarquee: React.FC = () => {
                   className="flex h-16 w-28 md:w-36 shrink-0 items-center justify-center cursor-pointer group px-2"
                 >
                   <img
-                    src={logoUrl}
+                    src={`/api/proxy-logo?url=${encodeURIComponent(logoUrl)}`}
                     alt="Partner Logo"
                     className={`h-full w-full object-contain opacity-40 group-hover:opacity-100 transition-all duration-500 brightness-0 invert ${
                       logoUrl.includes('NOLOOK') || logoUrl.includes('UISA') 
