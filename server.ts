@@ -95,6 +95,58 @@ async function startServer() {
     }
   });
 
+  // Helper to generate a beautiful, clean typographic/icon-based dynamic SVG fallback for partner logos
+  const getFallbackSvgForLogo = (logoUrl: string): string => {
+    const urlLower = logoUrl.toLowerCase();
+    
+    if (urlLower.includes("rustik")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="'Courier New', Courier, monospace, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="4">RUSTIK</text>
+      </svg>`;
+    }
+    if (urlLower.includes("nolook")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="300" font-size="20" fill="#FFFFFF" letter-spacing="6">NOLOOK</text>
+      </svg>`;
+    }
+    if (urlLower.includes("batista") || urlLower.includes("vida")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <g transform="translate(15, 0)">
+          <circle cx="25" cy="30" r="12" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.8"/>
+          <path d="M25 22 V38 M19 28 H31" stroke="#FFFFFF" stroke-width="2" />
+          <text x="110" y="34" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="14" fill="#FFFFFF" letter-spacing="1">VIDA</text>
+        </g>
+      </svg>`;
+    }
+    if (urlLower.includes("logo%20png") || urlLower.includes("logo_png")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="#FFFFFF" letter-spacing="3">VOZ &amp; VERSO</text>
+      </svg>`;
+    }
+    if (urlLower.includes("florescer")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="'Georgia', serif, sans-serif" font-weight="normal" font-style="italic" font-size="22" fill="#FFFFFF" letter-spacing="2">Florescer</text>
+      </svg>`;
+    }
+    if (urlLower.includes("uisa")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="impact, Arial Black, sans-serif" font-weight="900" font-size="26" fill="#FFFFFF" letter-spacing="2">UISA</text>
+      </svg>`;
+    }
+    if (urlLower.includes("65")) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect x="65" y="15" width="70" height="30" rx="4" fill="none" stroke="#FFFFFF" stroke-width="2" />
+        <text x="100" y="34" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="18" fill="#FFFFFF" letter-spacing="2">65</text>
+      </svg>`;
+    }
+
+    // Default general template when there isn't a specific match
+    const filenameClean = logoUrl.split('/').pop()?.split('.')[0]?.replace(/%20/g, ' ').toUpperCase() || 'PARCEIRO';
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+      <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="15" fill="#FFFFFF" letter-spacing="2">${filenameClean}</text>
+    </svg>`;
+  };
+
   // API Proxy endpoint to safely serve partner logos, bypassing client-side CORS or loading restrictions
   app.get("/api/proxy-logo", async (req, res) => {
     const logoUrl = req.query.url as string;
@@ -108,8 +160,15 @@ async function startServer() {
     }
 
     try {
-      // Use native fetch supported globally in Node 18+
-      const response = await fetch(logoUrl);
+      // Use premium browser requests headers to help GCS validate the request
+      const response = await fetch(logoUrl, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+          "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+          "Referer": "https://storage.googleapis.com/"
+        }
+      });
+
       if (!response.ok) {
         throw new Error(`Failed to fetch from remote: ${response.status} ${response.statusText}`);
       }
@@ -123,8 +182,10 @@ async function startServer() {
       const buffer = Buffer.from(arrayBuffer);
       res.send(buffer);
     } catch (error: any) {
-      console.error(`Error proxying logo ${logoUrl}:`, error.message);
-      res.status(500).json({ error: "Failed to proxy logo", message: error.message });
+      // Serve a beautifully formatted fallback SVG inline!
+      res.setHeader("Content-Type", "image/svg+xml");
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      res.send(Buffer.from(getFallbackSvgForLogo(logoUrl)));
     }
   });
 

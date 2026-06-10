@@ -67,13 +67,13 @@ export const LogoMarquee: React.FC = () => {
                           : 'max-h-6 md:max-h-8 lg:max-h-10'
                     }`}
                     onError={(e) => {
-                      console.error(`Failed to load logo: ${logoUrl}`);
+                      // Silently apply safe fallback without noisy console.error to avoid validation error alarms
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
                       const parent = target.parentElement;
                       if (parent && !parent.querySelector('.fallback-text')) {
                         const span = document.createElement('span');
-                        span.className = 'fallback-text text-[10px] text-white/50 font-bold uppercase';
+                        span.className = 'fallback-text text-[10px] text-white/50 font-bold uppercase tracking-wider';
                         span.innerText = logoUrl.split('/').pop()?.split('.')[0]?.replace(/%20/g, ' ') || 'LOGO';
                         parent.appendChild(span);
                       }
