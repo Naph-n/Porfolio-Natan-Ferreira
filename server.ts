@@ -4,6 +4,7 @@ import path from "path";
 import { Resend } from "resend";
 import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
+import { GoogleGenAI } from "@google/genai";
 
 dotenv.config();
 
@@ -92,6 +93,72 @@ async function startServer() {
     } catch (error: any) {
       console.error("Exceção ao enviar e-mail:", error);
       res.status(500).json({ error: "Erro interno ao processar o envio.", message: error.message });
+    }
+  });
+
+  // Rate Limiting to protect Gemini API backend handler from malicious abuse and unexpected charges
+  const geminiLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 12, // Allow max 12 queries per minute per client IP
+    message: { 
+      error: "Muitas consultas", 
+      message: "Você atingiu o limite temporário de interações por minuto. Por favor, aguarde alguns segundos antes de enviar outra mensagem." 
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  // Secure Backend Proxy endpoint for communicating with Gemini models
+  app.post("/api/gemini/generate", geminiLimiter, async (req, res) => {
+    const { prompt, systemInstruction, model } = req.body;
+
+    if (!prompt || typeof prompt !== "string" || prompt.trim() === "") {
+      return res.status(400).json({ error: "Campo de prompt ausente ou inválido." });
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey || apiKey.trim() === "" || apiKey.includes("MY_GEMINI_API_KEY")) {
+      console.error("ERRO DE SEGURANÇA: GEMINI_API_KEY não foi configurada nos segredos do servidor.");
+      return res.status(500).json({
+        error: "Configuração de servidor ausente",
+        message: "A chave da API Gemini não foi configurada nos segredos do projeto. Por favor, adicione GEMINI_API_KEY nas Configurações > Segredos."
+      });
+    }
+
+    try {
+      // Build GoogleGenAI instance on the server-side safely using system instruction guidelines
+      const ai = new GoogleGenAI({
+        apiKey: apiKey,
+        httpOptions: {
+          headers: {
+            "User-Agent": "aistudio-build",
+          }
+        }
+      });
+
+      // Default to standard gemini-3.5-flash as per the selected model decision guide
+      const selectedModel = model || "gemini-3.5-flash";
+
+      // Call Gemini API securely from the backend
+      const response = await ai.models.generateContent({
+        model: selectedModel,
+        contents: prompt,
+        config: systemInstruction ? { systemInstruction } : undefined,
+      });
+
+      // Extract the response text
+      const outputText = response.text;
+
+      return res.status(200).json({
+        success: true,
+        text: outputText || "",
+      });
+    } catch (error: any) {
+      console.error("Erro ao chamar o SDK do Gemini no servidor:", error.message || error);
+      return res.status(500).json({
+        error: "Falha na resposta do assistente",
+        message: error.message || "Não foi possível obter uma resposta do modelo de IA neste momento."
+      });
     }
   });
 

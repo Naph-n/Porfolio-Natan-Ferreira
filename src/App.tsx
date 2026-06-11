@@ -19,6 +19,7 @@ import { BackToTop } from "./components/BackToTop";
 import { Preloader } from "./components/Preloader";
 import { useLoading } from "./contexts/LoadingContext";
 import { LogoMarquee } from "./components/LogoMarquee";
+import { AIAssistant } from "./components/AIAssistant";
 
 export default function App() {
   const { isLoading, setIsLoading } = useLoading();
@@ -55,6 +56,7 @@ export default function App() {
           <CustomScrollbar />
           <BackToTop />
           <LanguageToggle />
+          <AIAssistant />
           <Navbar />
           <main>
             <Hero />
