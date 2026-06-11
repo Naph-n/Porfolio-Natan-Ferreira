@@ -2,15 +2,15 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-// Direct public URLs provided by the user
+// Local premium custom SVG files provided or created for the user
 const LOGOS = [
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/RUSTIK.svg',
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/NOLOOK.svg',
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/Igreja%20Batista%20Vida.svg',
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/Logo%20Png.png',
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/FLORESCER.svg',
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/UISA.svg',
-  'https://storage.googleapis.com/studiovozeverso/Logos%20Empresas/LOGO%2065.svg',
+  '/logos/rustik.svg',
+  '/logos/nolook.svg',
+  '/logos/vida.svg',
+  '/logos/biolusa.svg',
+  '/logos/florescer.svg',
+  '/logos/uisa.svg',
+  '/logos/logo65.svg',
 ];
 
 export const LogoMarquee: React.FC = () => {
@@ -57,14 +57,20 @@ export const LogoMarquee: React.FC = () => {
                   className="flex h-16 w-28 md:w-36 shrink-0 items-center justify-center cursor-pointer group px-2"
                 >
                   <img
-                    src={`/api/proxy-logo?url=${encodeURIComponent(logoUrl)}`}
+                    src={logoUrl}
                     alt="Partner Logo"
                     className={`h-full w-full object-contain opacity-40 group-hover:opacity-100 transition-all duration-500 brightness-0 invert ${
-                      logoUrl.includes('NOLOOK') || logoUrl.includes('UISA') 
-                        ? 'max-h-4 md:max-h-5 lg:max-h-6' 
-                        : logoUrl.includes('RUSTIK')
-                          ? 'max-h-10 md:max-h-12 lg:max-h-14'
-                          : 'max-h-6 md:max-h-8 lg:max-h-10'
+                      logoUrl.toUpperCase().includes('NOLOOK')
+                        ? 'max-h-[16px] md:max-h-[18px] lg:max-h-[22px]'
+                        : logoUrl.toUpperCase().includes('VIDA')
+                          ? 'max-h-[25px] md:max-h-[30px] lg:max-h-[35px]'
+                          : logoUrl.toUpperCase().includes('65')
+                            ? 'max-h-[22px] md:max-h-[26px] lg:max-h-[30px]'
+                            : logoUrl.toUpperCase().includes('UISA')
+                              ? 'max-h-[18px] md:max-h-[21px] lg:max-h-[24px]'
+                            : logoUrl.toUpperCase().includes('RUSTIK')
+                              ? 'max-h-10 md:max-h-12 lg:max-h-14'
+                              : 'max-h-6 md:max-h-8 lg:max-h-10'
                     }`}
                     onError={(e) => {
                       // Silently apply safe fallback without noisy console.error to avoid validation error alarms

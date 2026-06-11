@@ -61,6 +61,12 @@ function DigitColumn({ digit, index, duration }: { digit: string, index: number,
         transition={{ 
             duration: actualDuration, ease: [0.16, 1, 0.3, 1], delay: actualDelay
         }}
+        style={{ 
+          willChange: "transform",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden"
+        }}
         className="absolute top-0 inset-x-0 flex flex-col leading-none"
       >
         {sequence.map((n, i) => (

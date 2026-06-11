@@ -72,7 +72,7 @@ export function Navbar() {
 
             {/* CV Button */}
             <motion.a
-              href="https://storage.googleapis.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
+              href="https://storage.googleapis.com/arquivosnf/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: -20 }}
@@ -161,7 +161,7 @@ export function Navbar() {
                 ))}
                 {/* Mobile CV Link */}
                 <motion.a
-                  href="https://storage.googleapis.com/studiovozeverso/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
+                  href="https://storage.googleapis.com/arquivosnf/Curr%C3%ADculo%20-%20Natan%20Ferreira.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
