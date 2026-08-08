@@ -10,6 +10,10 @@ dotenv.config();
 
 async function startServer() {
   const app = express();
+
+  // Enable trust proxy so express-rate-limit can read client IPs correctly behind Cloud Run / load balancers
+  app.set("trust proxy", 1);
+
   const PORT = Number(process.env.PORT) || 3000;
 
   // Rate Limiting to prevent "abusive activities"

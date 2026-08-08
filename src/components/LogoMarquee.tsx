@@ -11,6 +11,9 @@ const LOGOS = [
   '/logos/florescer.svg',
   '/logos/uisa.svg',
   '/logos/logo65.svg',
+  '/logos/pa_consultoria.svg',
+  '/logos/morena_sementes.svg',
+  '/logos/escoagro.svg',
 ];
 
 export const LogoMarquee: React.FC = () => {
@@ -54,7 +57,7 @@ export const LogoMarquee: React.FC = () => {
               {displayLogos.map((logoUrl, index) => (
                 <div
                   key={`${index}`}
-                  className="flex h-16 w-28 md:w-36 shrink-0 items-center justify-center cursor-pointer group px-2"
+                  className="flex h-20 w-32 md:w-40 shrink-0 items-center justify-center cursor-pointer group px-3"
                 >
                   <img
                     src={logoUrl}
@@ -68,9 +71,15 @@ export const LogoMarquee: React.FC = () => {
                             ? 'max-h-[22px] md:max-h-[26px] lg:max-h-[30px]'
                             : logoUrl.toUpperCase().includes('UISA')
                               ? 'max-h-[18px] md:max-h-[21px] lg:max-h-[24px]'
+                            : logoUrl.toUpperCase().includes('BIOLUSA')
+                              ? 'max-h-[24px] md:max-h-[30px] lg:max-h-[36px]'
                             : logoUrl.toUpperCase().includes('RUSTIK')
-                              ? 'max-h-10 md:max-h-12 lg:max-h-14'
-                              : 'max-h-6 md:max-h-8 lg:max-h-10'
+                              ? 'max-h-14 md:max-h-16 lg:max-h-20'
+                              : logoUrl.toUpperCase().includes('PA_CONSULTORIA')
+                                ? 'max-h-[24px] md:max-h-[28px] lg:max-h-[32px]'
+                                : logoUrl.toUpperCase().includes('ESCOAGRO')
+                                  ? 'max-h-[26px] md:max-h-[32px] lg:max-h-[38px]'
+                                  : 'max-h-8 md:max-h-10 lg:max-h-12'
                     }`}
                     onError={(e) => {
                       // Silently apply safe fallback without noisy console.error to avoid validation error alarms
