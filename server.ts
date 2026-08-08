@@ -27,6 +27,58 @@ async function startServer() {
 
   app.use(express.json());
 
+  // CORS Middleware strictly restricting allowed domains to prevent abuse and hacker attacks
+  app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    
+    // Se não houver origin (ex: requisições da mesma origem ou internas)
+    if (!origin) {
+      next();
+      return;
+    }
+
+    const allowedOrigins = [
+      "https://natanferreira.com.br",
+      "https://www.natanferreira.com.br",
+      "https://ais-dev-sebwipcy7uleapki6juhdz-220672919869.us-east1.run.app",
+      "https://ais-pre-sebwipcy7uleapki6juhdz-220672919869.us-east1.run.app"
+    ];
+
+    let isAllowed = allowedOrigins.includes(origin);
+
+    if (!isAllowed) {
+      try {
+        const parsedUrl = new URL(origin);
+        if (
+          parsedUrl.hostname === "localhost" ||
+          parsedUrl.hostname === "127.0.0.1" ||
+          parsedUrl.hostname.endsWith("run.app") ||
+          parsedUrl.hostname.endsWith("google.com") ||
+          parsedUrl.hostname.endsWith("ai.studio")
+        ) {
+          isAllowed = true;
+        }
+      } catch (err) {
+        isAllowed = false;
+      }
+    }
+
+    if (isAllowed) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+      if (req.method === "OPTIONS") {
+        return res.sendStatus(204);
+      }
+      next();
+    } else {
+      res.status(403).json({ 
+        error: "CORS não permitido para esta origem.",
+        message: "Acesso negado por razões de segurança (CORS restrito)."
+      });
+    }
+  });
+
   // API Route for Contact Form
   app.post("/api/enviar-contato", contactLimiter, async (req, res) => {
     const { name, email, phone, message } = req.body;
@@ -50,7 +102,7 @@ async function startServer() {
       console.error("ERRO DE CONFIGURAÇÃO NO SERVIDOR: A chave da API RESEND_API_KEY não foi configurada nos segredos do projeto.");
       return res.status(500).json({ 
         error: "Configuração ausente", 
-        message: "Ocorreu um problema técnico de configuração. Por favor, tente novamente mais tarde.",
+        message: "A chave RESEND_API_KEY não está configurada nas variáveis de ambiente. Por favor, insira-a em Configurações > Segredos no AI Studio.",
         debugInfo: "RESEND_API_KEY is not configured in environment variables."
       });
     }
@@ -58,13 +110,13 @@ async function startServer() {
     try {
       const resend = new Resend(resendApiKey);
       
-      // Como o usuário confirmou que o domínio está verificado, 
-      // devemos usar um e-mail do domínio próprio para evitar as restrições do modo Sandbox.
-      const fromEmail = 'contato@natanferreira.com.br';
+      // Permite customizar remetente e destinatário via variáveis de ambiente para facilitar no domínio próprio
+      const fromEmail = process.env.RESEND_FROM_EMAIL || 'contato@natanferreira.com.br';
+      const toEmail = process.env.RESEND_TO_EMAIL || 'natan.furtado@outlook.com';
       
       const { data, error } = await resend.emails.send({
         from: `Natan Ferreira <${fromEmail}>`,
-        to: 'natan.furtado@outlook.com',
+        to: toEmail,
         replyTo: `${cleanName} <${cleanEmail}>`,
         subject: `Novo contato: ${cleanName}`,
         html: `
@@ -84,11 +136,10 @@ async function startServer() {
       });
 
       if (error) {
-        // Sanitize logs: avoid logging full error object which might contain secrets
         console.error("Erro na API do Resend:", error.message || "Erro desconhecido");
         return res.status(400).json({ 
           error: "Erro na API do Resend", 
-          message: "Ocorreu um problema ao enviar o e-mail. Por favor, tente novamente mais tarde.",
+          message: `Erro do Resend: ${error.message || "Ocorreu um problema ao enviar o e-mail."} Verifique se o domínio de envio '${fromEmail}' está devidamente verificado no seu painel da Resend.`,
           type: error.name 
         });
       }

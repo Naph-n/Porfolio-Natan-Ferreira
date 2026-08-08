@@ -30,7 +30,20 @@ export function Contact() {
     };
 
     try {
-      const response = await fetch('/api/enviar-contato', {
+      // Se estiver rodando em ambiente estático externo (como o cPanel do seu domínio próprio),
+      // direcionamos a requisição para a URL absoluta do servidor implantado no Cloud Run do AI Studio.
+      const isLocalOrPlatform = 
+        window.location.hostname === 'localhost' || 
+        window.location.hostname === '127.0.0.1' || 
+        window.location.hostname.endsWith('run.app') || 
+        window.location.hostname.endsWith('google.com') ||
+        window.location.hostname.endsWith('ai.studio');
+      
+      const apiEndpoint = isLocalOrPlatform 
+        ? '/api/enviar-contato' 
+        : 'https://ais-pre-sebwipcy7uleapki6juhdz-220672919869.us-east1.run.app/api/enviar-contato';
+
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,11 +62,11 @@ export function Contact() {
           setIsSuccess(false);
         }, 5000);
       } else {
-        // UI shows the localized user-friendly message, but we print the raw error to the console for Natan to debug.
-        setErrorMsg(t('contact.form.error.generic'));
-        console.error("Erro detalhado no envio (veja se a chave RESEND_API_KEY está configurada no servidor):", result);
+        // Exibe a mensagem de erro detalhada retornada pelo servidor se disponível, senão exibe o genérico.
+        setErrorMsg(result.message || t('contact.form.error.generic'));
+        console.error("Erro detalhado no envio:", result);
       }
-    } catch (error) {
+    } catch (error: any) {
       setErrorMsg(t('contact.form.error.connection'));
       console.error("Erro de conexão ao enviar contato:", error);
     } finally {
