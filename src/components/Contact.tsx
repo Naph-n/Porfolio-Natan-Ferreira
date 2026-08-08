@@ -49,12 +49,13 @@ export function Contact() {
           setIsSuccess(false);
         }, 5000);
       } else {
-        setErrorMsg(result.message || result.error || "Erro ao enviar mensagem. Tente novamente.");
-        console.error("Erro no envio:", result);
+        // UI shows the localized user-friendly message, but we print the raw error to the console for Natan to debug.
+        setErrorMsg(t('contact.form.error.generic'));
+        console.error("Erro detalhado no envio (veja se a chave RESEND_API_KEY está configurada no servidor):", result);
       }
     } catch (error) {
-      setErrorMsg("Erro de conexão. Verifique sua internet.");
-      console.error("Erro ao enviar contato:", error);
+      setErrorMsg(t('contact.form.error.connection'));
+      console.error("Erro de conexão ao enviar contato:", error);
     } finally {
       setIsSubmitting(false);
     }

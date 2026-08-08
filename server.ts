@@ -43,10 +43,11 @@ async function startServer() {
 
     const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey || resendApiKey.trim() === "" || resendApiKey.includes("YOUR_")) {
-      console.error("ERRO: RESEND_API_KEY não configurada ou inválida.");
+      console.error("ERRO DE CONFIGURAÇÃO NO SERVIDOR: A chave da API RESEND_API_KEY não foi configurada nos segredos do projeto.");
       return res.status(500).json({ 
         error: "Configuração ausente", 
-        message: "A chave da API do Resend não foi configurada. Por favor, adicione RESEND_API_KEY aos segredos do projeto." 
+        message: "Ocorreu um problema técnico de configuração. Por favor, tente novamente mais tarde.",
+        debugInfo: "RESEND_API_KEY is not configured in environment variables."
       });
     }
 
@@ -92,7 +93,11 @@ async function startServer() {
       res.status(200).json({ success: true, data });
     } catch (error: any) {
       console.error("Exceção ao enviar e-mail:", error);
-      res.status(500).json({ error: "Erro interno ao processar o envio.", message: error.message });
+      res.status(500).json({ 
+        error: "Erro interno", 
+        message: "Ocorreu um problema ao processar seu envio. Por favor, tente novamente mais tarde.",
+        debugInfo: error.message || String(error)
+      });
     }
   });
 

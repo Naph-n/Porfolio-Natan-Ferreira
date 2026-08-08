@@ -134,6 +134,8 @@ const translations: Translations = {
   'contact.form.submit': { pt: 'Enviar Mensagem', en: 'Send Message' },
   'contact.form.submitting': { pt: 'Enviando...', en: 'Sending...' },
   'contact.form.success': { pt: 'Mensagem enviada com sucesso', en: 'Message sent successfully' },
+  'contact.form.error.generic': { pt: 'Ocorreu um problema ao enviar sua mensagem. Por favor, tente novamente mais tarde ou envie um e-mail diretamente.', en: 'There was a problem sending your message. Please try again later or email directly.' },
+  'contact.form.error.connection': { pt: 'Erro de conexão. Verifique sua internet.', en: 'Connection error. Please check your internet.' },
 
   // Footer
   'footer.rights': { pt: '© 2026 Natan Ferreira. Todos os direitos reservados.', en: '© 2026 Natan Ferreira. All rights reserved.' },
